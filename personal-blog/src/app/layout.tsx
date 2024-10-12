@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Josefin_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
@@ -8,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
+
 
 export default function RootLayout({
   children,
