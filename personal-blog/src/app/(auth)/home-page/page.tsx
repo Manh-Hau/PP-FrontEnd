@@ -1,8 +1,6 @@
 import React from 'react'
 import { Backdrop } from '../../../components/backdrop';
 import { Collection } from '../../../components/collection';
-import { Footer } from '../../../components/footer';
-import { Header } from '../../../components/header';
 import styles from "./page.module.css";
 
 function HomePage() {
@@ -10,7 +8,6 @@ function HomePage() {
         <div>
             <Backdrop />
             <Collection />
-            <Footer />
         </div>
     )
 }

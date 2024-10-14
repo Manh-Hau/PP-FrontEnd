@@ -1,0 +1,15 @@
+.media_container {
+    padding-top: 150px;
+    height: 100%;
+}
+
+.media_header {
+    color: white;
+    padding-left: 100px;
+    font-size: 30px;
+}
+
+.break {
+    border: 1px solid rgb(110, 107, 107);
+    margin: 0 300px 0 150px;
+}

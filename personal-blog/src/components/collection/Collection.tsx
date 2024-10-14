@@ -39,23 +39,107 @@ function Collection() {
             alt: 'work_1',
             title: 'Chàng trai Rumania',
             material: 'Sơn dầu',
-            price: '5,000,000 VNĐ',
+            price: 'x,000,000 VNĐ',
             size: '160cm x 100cm'
         },
-        { src: work_2.src, alt: 'work_2' },
-        { src: work_3.src, alt: 'work_3' },
-        { src: work_4.src, alt: 'work_4' },
-        { src: work_5.src, alt: 'work_5' },
-        { src: work_6.src, alt: 'work_6' },
-        { src: work_7.src, alt: 'work_7' },
-        { src: work_8.src, alt: 'work_8' },
-        { src: work_9.src, alt: 'work_9' },
-        { src: work_10.src, alt: 'work_10' },
-        { src: work_11.src, alt: 'work_11' },
-        { src: work_12.src, alt: 'work_12' },
-        { src: work_13.src, alt: 'work_13' },
-        { src: work_14.src, alt: 'work_14' },
-        { src: work_15.src, alt: 'work_15' },
+        {
+            src: work_2.src, alt: 'work_2',
+            title: 'Thuỵ Sĩ Yên Bình',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '160cm x 100cm'
+        },
+        {
+            src: work_3.src, alt: 'work_3',
+            title: '...',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '160cm x 100cm'
+        },
+        {
+            src: work_4.src, alt: 'work_4',
+            title: 'Biển vàng',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1m x 1m'
+        },
+        {
+            src: work_5.src, alt: 'work_5',
+            title: 'Bình minh trên gành đá dĩa',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '160cm x 100cm'
+        },
+        {
+            src: work_6.src, alt: 'work_6',
+            title: 'Cát vàng biển xanh',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '160cm x 100cm'
+        },
+        {
+            src: work_7.src, alt: 'work_7',
+            title: 'Gành đèn',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1.5m x 1m'
+        },
+        {
+            src: work_8.src, alt: 'work_8',
+            title: '...',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '160cm x 100cm'
+        },
+        {
+            src: work_9.src, alt: 'work_9',
+            title: 'Liên hoa 1',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '160cm x 100cm'
+        },
+        {
+            src: work_10.src, alt: 'work_10',
+            title: 'Liên hoa 2',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1.2m x 1.2m'
+        },
+        {
+            src: work_11.src, alt: 'work_11',
+            title: 'Mũi Đại Lãnh',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1.2m x 1.2m'
+        },
+        {
+            src: work_12.src, alt: 'work_12',
+            title: 'Ngư dân và cá ngừ',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1.6m x 1m'
+        },
+        {
+            src: work_13.src, alt: 'work_13',
+            title: 'Ngựa Thì Thùng',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1.5m x 1m'
+        },
+        {
+            src: work_14.src, alt: 'work_14',
+            title: 'Tháp Nghinh Phong',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '1m x 1m'
+        },
+        {
+            src: work_15.src, alt: 'work_15',
+            title: 'Vịng Xuân Đài',
+            material: 'Sơn dầu',
+            price: 'x,000,000 VNĐ',
+            size: '2.5m x 1m'
+        },
     ];
     return (
         <div className={styles.collection_container}>

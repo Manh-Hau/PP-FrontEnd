@@ -9,6 +9,15 @@ const nextConfig = {
     compiler: {
         styledComponents: true,
     },
+    async redirects() {
+        return [
+            {
+                source: '/',
+                destination: '/en/home-page',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default nextConfig;
