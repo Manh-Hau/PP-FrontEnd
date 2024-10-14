@@ -1,5 +1,6 @@
 .main {
   width: 100dvw;
   height: 100dvh;
-  background-color: aquamarine;
+  margin: 0px !important;
+  background-color: rgb(13, 12, 12);
 }
