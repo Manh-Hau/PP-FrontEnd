@@ -5,11 +5,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 100px;
 }
 
 .footer_container h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    margin-top: 0;
     color: #FCCA0B;
 }
 
@@ -19,24 +21,10 @@
     margin-bottom: 1.5rem;
 }
 
-.form_group {
-    display: flex;
-    margin-bottom: 1rem;
-    gap: 10px
-}
-
-.form_group input[type="email"] {
-    flex-grow: 1;
-    padding: 1rem 1.5rem;
-    border: 1px solid #ccc;
-}
-
-.form_group button {
-    padding: 1rem 1.5rem;
-    background-color: white;
-    border: 1px solid #000;
-    cursor: pointer;
-    background-color: #FCCA0B;
+.footer_container h2 {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
 }
 
 .privacy_note {
@@ -51,5 +39,16 @@
 
 .social_icons button {
     border: none;
+    padding: 6px 6px;
     background: none;
+    color: white;
+}
+
+.social_icons button:hover {
+    border: none;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    color: black;
 }

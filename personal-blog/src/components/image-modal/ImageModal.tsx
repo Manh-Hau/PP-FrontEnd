@@ -1,3 +1,6 @@
+"use client"
+
+import { useRouter } from 'next/navigation';
 import React from 'react'
 import styles from './app.module.css'
 
@@ -17,6 +20,11 @@ interface ImageModalProps {
 }
 
 const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {
+    const router = useRouter()
+
+    const handleNavigation = (path: string) => {
+        router.push(path)
+    }
     return (
         <div className={styles.lightbox_overlay} onClick={onClose}>
             <div className={styles.lightbox_content} onClick={(e) => e.stopPropagation()}>
@@ -29,7 +37,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {
                     <p><strong>Kích thước :</strong> {image.size}</p>
                     <p><strong>Giá:</strong> {image.price}</p>
                     <p>{image.description}</p>
-                    <button>Liên hệ mua tranh</button>
+                    <button onClick={() => handleNavigation('/contact')}>Liên hệ mua tranh</button>
                 </div>
                 <button className={styles.lightbox_close} onClick={onClose}>&times;</button>
             </div>
