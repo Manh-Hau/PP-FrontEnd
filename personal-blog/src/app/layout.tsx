@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Personal Blog",
-  description: "This is my personal blog",
+  title: "Phan Phu Yen",
+  description: "This is Phan Phu Yen Blog",
 };
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${josefinSans.className} antialiased`}>
+      <body className={`${josefinSans.className} ${styles.main} antialiased`}>
         {children}
       </body>
     </html>
