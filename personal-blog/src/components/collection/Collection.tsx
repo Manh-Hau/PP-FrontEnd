@@ -21,7 +21,6 @@ import work_15 from '../../assets/image/work_13.jpg'
 import { useState } from 'react'
 import { ImageModal } from '../image-modal'
 import { ImageType } from '../image-modal/ImageModal'
-import Image from 'next/image'
 
 function Collection() {
     const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
@@ -142,6 +141,25 @@ function Collection() {
             size: '2.5m x 1m'
         },
     ];
+
+    const findImageIndex = (image: ImageType) => images.findIndex((img) => img.src === image.src);
+
+    const showPreviousImage = () => {
+        if (selectedImage) {
+            const currentIndex = findImageIndex(selectedImage);
+            const prevIndex = (currentIndex - 1 + images.length) % images.length;
+            setSelectedImage(images[prevIndex]);
+        }
+    };
+
+    const showNextImage = () => {
+        if (selectedImage) {
+            const currentIndex = findImageIndex(selectedImage);
+            const nextIndex = (currentIndex + 1) % images.length;
+            setSelectedImage(images[nextIndex]);
+        }
+    };
+
     return (
         <div className={styles.collection_container}>
             <h1 className={styles.title}>Đằng sau mỗi tác phẩm của tôi là một câu chuyện. <br />Hãy cùng thưởng thức chúng!</h1>
@@ -156,6 +174,8 @@ function Collection() {
                 <ImageModal
                     image={selectedImage}
                     onClose={closeModal}
+                    onPrevious={showPreviousImage}
+                    onNext={showNextImage}
                 />
             )}
         </div>
