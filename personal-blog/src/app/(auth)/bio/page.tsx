@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './page.module.css';
-import bio_1 from '../../assets/image/bio_1.jpg';
-import bio_2 from '../../assets/image/bio_2.jpg';
-import bio_3 from '../../assets/image/bio_3.jpg';
+import bio_1 from '../../../assets/image/bio_1.jpg';
+import bio_2 from '../../../assets/image/bio_2.jpg';
+import bio_3 from '../../../assets/image/bio_3.jpg';
 
 interface ContentItem {
   id: number;

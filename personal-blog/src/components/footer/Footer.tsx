@@ -5,7 +5,7 @@ import { Instagram, Facebook, PhoneCall } from 'lucide-react'
 function Footer() {
     return (
         <div className={styles.footer_container}>
-            <h2>Artist,</h2>
+            <h2>Artist</h2>
             <h1>PHAN PHU YEN</h1>
             <p className={styles.privacy_note}>Trân trọng</p>
             <div className={styles.social_icons}>
