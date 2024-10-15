@@ -2,7 +2,7 @@
 
 import React from 'react'
 import styles from './page.module.css'
-import logo from '../../app/assets/image/logo.png'
+import logo from '../../assets/image/logo.png'
 import { User, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
@@ -16,10 +16,9 @@ function Header() {
         <div className={styles.header_container}>
             <img src={logo.src} alt='logo' className={styles.logo_image} />
             <ul className={styles.header_items}>
-                <li onClick={() => handleNavigation('/home-page')}>TRANG CHỦ</li>
+                <li onClick={() => handleNavigation('/')}>TRANG CHỦ</li>
                 <li onClick={() => handleNavigation('/bio')}>TIỂU SỬ</li>
-                <li onClick={() => handleNavigation('/exhibitions')}>TRIỂN LÃM</li>
-                <li onClick={() => handleNavigation('/work')}>CÔNG VIỆC</li>
+                <li onClick={() => handleNavigation('/activities')}>HOẠT ĐỘNG</li>
                 <li onClick={() => handleNavigation('/media')}>TRUYỀN THÔNG</li>
                 <li onClick={() => handleNavigation('/contact')}>LIÊN HỆ</li>
             </ul>

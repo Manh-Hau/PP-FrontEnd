@@ -3,24 +3,25 @@
 import React from 'react'
 import styles from './app.module.css'
 //works
-import work_1 from '../../app/assets/image/collection_1.jpg'
-import work_2 from '../../app/assets/image/collection_2.jpg'
-import work_3 from '../../app/assets/image/work_1.jpg'
-import work_4 from '../../app/assets/image/work_2.jpg'
-import work_5 from '../../app/assets/image/work_3.jpg'
-import work_6 from '../../app/assets/image/work_4.jpg'
-import work_7 from '../../app/assets/image/work_5.jpg'
-import work_8 from '../../app/assets/image/work_6.jpg'
-import work_9 from '../../app/assets/image/work_7.jpg'
-import work_10 from '../../app/assets/image/work_8.jpg'
-import work_11 from '../../app/assets/image/work_9.jpg'
-import work_12 from '../../app/assets/image/work_10.jpg'
-import work_13 from '../../app/assets/image/work_11.jpg'
-import work_14 from '../../app/assets/image/work_12.jpg'
-import work_15 from '../../app/assets/image/work_13.jpg'
+import work_1 from '../../assets/image/collection_1.jpg'
+import work_2 from '../../assets/image/collection_2.jpg'
+import work_3 from '../../assets/image/work_1.jpg'
+import work_4 from '../../assets/image/work_2.jpg'
+import work_5 from '../../assets/image/work_3.jpg'
+import work_6 from '../../assets/image/work_4.jpg'
+import work_7 from '../../assets/image/work_5.jpg'
+import work_8 from '../../assets/image/work_6.jpg'
+import work_9 from '../../assets/image/work_7.jpg'
+import work_10 from '../../assets/image/work_8.jpg'
+import work_11 from '../../assets/image/work_9.jpg'
+import work_12 from '../../assets/image/work_10.jpg'
+import work_13 from '../../assets/image/work_11.jpg'
+import work_14 from '../../assets/image/work_12.jpg'
+import work_15 from '../../assets/image/work_13.jpg'
 import { useState } from 'react'
 import { ImageModal } from '../image-modal'
 import { ImageType } from '../image-modal/ImageModal'
+import Image from 'next/image'
 
 function Collection() {
     const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
@@ -147,7 +148,7 @@ function Collection() {
             <div className={styles.collection_works}>
                 {images.map((image, index) => (
                     <div key={index} className={`${styles.collection_mansory_item}`} onClick={() => openModal(image)}>
-                        <img src={image.src} alt={image.alt} loading="lazy" />
+                        <img src={image.src} alt={image.alt} />
                     </div>
                 ))}
             </div>

@@ -1,41 +1,34 @@
 .contact_container {
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    padding-top: 150px;
-    background-color: whitesmoke;
+    height: 100%;
+    padding-top: 100px;
+    background-color: #fafafa;
+    position: relative;
+    padding: 200px 250px;
 }
 
-.subheader {
+.contact_body {
+    display: flex;
+    /* flex-direction: row;
+    align-items: center;
+    justify-content: center; */
+}
+
+.contact_header {
     font-size: 2rem;
     font-weight: 200;
-    margin: 50px 0;
+    margin-bottom: 50px;
+    margin-top: 0;
 }
 
 .form {
     width: 80%;
-    max-width: 700px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .fieldGroup {
     margin-bottom: 20px;
-}
-
-.label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 200;
-}
-
-.label span {
-    font-weight: normal;
-    color: gray;
 }
 
 .nameFields {
@@ -64,7 +57,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
-    border: 1px solid #000000;
+    border: 1px solid #a9a9a9;
     background-color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -74,4 +67,23 @@
     background-color: #000000;
     color: #ffffff;
     border: 1px solid #000000;
+}
+
+.container_left {
+    flex: 2;
+
+}
+
+.container_right {
+    flex: 2;
+}
+
+.container_left img {
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
+}
+
+.contact_info {
+    font-weight: 200;
 }

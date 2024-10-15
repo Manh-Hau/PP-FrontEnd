@@ -8,7 +8,7 @@
 .bio_container {
     display: block;
     height: 220vh;
-    background-image: url('../../assets/image/bio_1.jpg');
+    background-image: url('../../../assets/image/bio_1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -1,13 +1,20 @@
+"use client"
 import React from 'react'
 import styles from './app.module.css'
-import slider from '../../app/assets/image/slider.avif'
+import slider from '../../assets/image/work_4.jpg'
+import Image from 'next/image'
 
 function Backdrop() {
     return (
         <div className={styles.backdrop_container}>
-            <img className={styles.backdrop_image} src={slider.src} alt="slider_image" />
+            <Image width={1000}
+                height={700}
+                className={styles.backdrop_image}
+                src={slider.src}
+                alt="slider_image"
+                priority />
             <div className={styles.backdrop_item}>
-                <h2>Artist,</h2>
+                <h2>Artist</h2>
                 <h1>
                     <span className={styles.letter}>P</span>
                     <span className={styles.letter}>h</span>
