@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import styles from './app.module.css'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export type ImageType = {
     src: string;
@@ -14,12 +15,15 @@ export type ImageType = {
     size?: string;
 };
 
+
 interface ImageModalProps {
     image: ImageType;
     onClose: () => void;
+    onPrevious: () => void;
+    onNext: () => void;
 }
 
-const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {
+const ImageModal: React.FC<ImageModalProps> = ({ image, onClose, onPrevious, onNext }) => {
     const router = useRouter()
 
     const handleNavigation = (path: string) => {
@@ -28,9 +32,11 @@ const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {
     return (
         <div className={styles.lightbox_overlay} onClick={onClose}>
             <div className={styles.lightbox_content} onClick={(e) => e.stopPropagation()}>
+                <button className={styles.arrow_left} onClick={onPrevious}><ChevronLeft size={30} /></button>
                 <div className={styles.lightbox_image_container}>
                     <img src={image.src} alt={image.alt} className={styles.lightbox_image} />
                 </div>
+                <button className={styles.arrow_right} onClick={onNext}><ChevronRight size={30} /></button>
                 <div className={styles.lightbox_details}>
                     <h2>{image.title}</h2>
                     <p><strong>Chất liệu :</strong> {image.material}</p>

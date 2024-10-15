@@ -73,3 +73,26 @@
     cursor: pointer;
     background-color: transparent;
 }
+
+.arrow_left,
+.arrow_right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 1001;
+}
+
+.arrow_left {
+    left: 10px;
+}
+
+.arrow_right {
+    right: 10px;
+}
