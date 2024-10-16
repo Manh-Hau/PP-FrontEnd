@@ -42,6 +42,17 @@
     border: 5px solid white;
 }
 
+.fade_in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade_in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 1200px) {
     .collection_works {
         width: calc(100%-40px);

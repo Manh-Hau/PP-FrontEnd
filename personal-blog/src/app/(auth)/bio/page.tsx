@@ -49,7 +49,7 @@ function Bio() {
           const itemPosition = containerHeight * parseFloat(item.position.top) / 100;
           const shouldBeVisible = scrollPosition > itemPosition - window.innerHeight / 2 &&
             scrollPosition < itemPosition + window.innerHeight / 2 &&
-            scrollPosition > 0; // Add this condition to hide when at the top
+            scrollPosition > 0;
 
           if (shouldBeVisible && !visibleItems.includes(item.id) && isScrollingDown) {
             setVisibleItems(prev => [...prev, item.id]);
