@@ -5,7 +5,6 @@ import personal from '../../../assets/image/bio_2.jpg'
 function Contact() {
     return (
         <div className={styles.contact_container}>
-
             <div className={styles.contact_body}>
                 <div className={styles.container_left}>
                     <img src={personal.src} alt="my picture" />
@@ -21,20 +20,16 @@ function Contact() {
                                 <input type="text" placeholder="Họ" className={styles.input} />
                             </div>
                         </div>
-
                         <div className={styles.fieldGroup}>
                             <input type="email" placeholder="Email" className={styles.input} />
                         </div>
-
                         <div className={styles.fieldGroup}>
                             <textarea placeholder="Tin nhắn" className={styles.textarea} />
                         </div>
-
                         <button type="submit" className={styles.submitButton}>GỬI</button>
                     </form>
                 </div>
             </div>
-
         </div>
     );
 }
