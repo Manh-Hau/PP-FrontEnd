@@ -1,27 +1,25 @@
 .contact_container {
     height: 100%;
-    padding-top: 100px;
+    padding: 120px 5%;
     background-color: #fafafa;
     position: relative;
-    padding: 200px 250px;
 }
 
 .contact_body {
     display: flex;
-    /* flex-direction: row;
-    align-items: center;
-    justify-content: center; */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .contact_header {
     font-size: 2rem;
     font-weight: 200;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: 0;
 }
 
 .form {
-    width: 80%;
+    width: 100%;
     max-width: 100%;
     display: flex;
     flex-direction: column;
@@ -34,22 +32,22 @@
 .nameFields {
     display: flex;
     gap: 10px;
+    /* flex-wrap: wrap; */
 }
 
 .input,
 .textarea {
-    width: -webkit-fill-available;
+    /* width: 100%; */
     padding: 10px;
     border: 1px solid #a9a9a9;
-    background-color: white;
-    color: #FCCC0B;
-    font-size: 1rem;
     background-color: #fafafa;
+    font-size: 13px;
+    width: -webkit-fill-available;
 }
 
 .textarea {
     resize: vertical;
-    height: 100px;
+    height: 200px;
 }
 
 .submitButton {
@@ -69,21 +67,61 @@
     border: 1px solid #000000;
 }
 
-.container_left {
-    flex: 2;
-
-}
-
+.container_left,
 .container_right {
-    flex: 2;
+    flex: 1 1 300px;
+    margin-bottom: 30px;
+    margin-right: 20px;
 }
 
 .container_left img {
-    width: 500px;
-    height: 600px;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 600px;
     object-fit: cover;
 }
 
 .contact_info {
     font-weight: 200;
+}
+
+@media (max-width: 768px) {
+    .contact_container {
+        padding: 50px 5%;
+    }
+
+    .contact_body {
+        flex-direction: column;
+    }
+
+    .container_left,
+    .container_right {
+        flex: 1 1 100%;
+    }
+
+    .nameFields {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .contact_header {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact_container {
+        padding: 30px 5%;
+    }
+
+    .contact_header {
+        font-size: 1.2rem;
+    }
+
+    .input,
+    .textarea,
+    .submitButton {
+        font-size: 0.9rem;
+    }
 }
