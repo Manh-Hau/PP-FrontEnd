@@ -31,7 +31,7 @@ function Backdrop() {
                     </div>
 
                     <span className={styles.letter}> </span>
-                    <div>
+                    <div className={styles.last_letter}>
                         <span className={styles.letter}>Y</span>
                         <span className={styles.letter}>e</span>
                         <span className={styles.letter}>n</span>

@@ -162,7 +162,7 @@ function Collection() {
 
     return (
         <div className={styles.collection_container}>
-            <h1 className={styles.title}>Đằng sau mỗi tác phẩm của tôi là một câu chuyện. <br />Hãy cùng thưởng thức chúng!</h1>
+            <h1 className={styles.title}>You use a glass mirror to see your face; <br /> you use works of art to see your soul <br /><span>“George Bernard Shaw”</span> </h1>
             <div className={styles.collection_works}>
                 {images.map((image, index) => (
                     <div key={index} className={`${styles.collection_mansory_item}`} onClick={() => openModal(image)}>

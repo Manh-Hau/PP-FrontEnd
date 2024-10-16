@@ -8,13 +8,18 @@
 
 .title {
     color: #FCCA0B;
-    font-size: 32px;
+    font-size: 40px;
     word-wrap: break-word;
     font-weight: 500;
     box-sizing: border-box;
     text-align: center;
     position: relative;
     margin: 60px 0;
+}
+
+.title span {
+    font-size: 22px;
+    font-weight: 200;
 }
 
 .collection_works {

@@ -13,6 +13,7 @@
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    width: auto;
 }
 
 .content_wrapper {
