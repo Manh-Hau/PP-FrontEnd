@@ -19,6 +19,7 @@
 .content_wrapper {
     position: absolute;
     opacity: 0;
+    left: 30%;
     transform: translateY(20px);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     max-width: 300px;
@@ -49,4 +50,28 @@
     padding: 20px;
     color: white;
     font-size: 0.9rem;
+}
+
+@media (max-width: 670px) {
+    .content_wrapper {
+        left: 30%;
+    }
+}
+
+@media (max-width: 540px) {
+    .content_wrapper {
+        left: 20%;
+    }
+}
+
+@media (max-width: 450px) {
+    .content_wrapper {
+        left: 10%;
+    }
+}
+
+@media (max-width: 390px) {
+    .content_wrapper {
+        left: 2%;
+    }
 }

@@ -17,19 +17,19 @@ const contentItems: ContentItem[] = [
     id: 1,
     title: "TÓM TẮT VỀ TIỂU SỬ 1",
     content: "Hoạ sĩ Phan Phú Yên (1996)\nQuên quán: Phú Yên.\nTốt nghiệp đại học Kiến Trúc Tp.Hồ Chí Minh.",
-    position: { top: "20%", left: "20%" }
+    position: { top: "20%", left: "30%" }
   },
   {
     id: 2,
     title: "TÓM TẮT VỀ TIỂU SỬ 2",
     content: "Thông tin thêm về tiểu sử 2",
-    position: { top: "40%", left: "60%" }
+    position: { top: "40%", left: "30%" }
   },
   {
     id: 3,
     title: "TÓM TẮT VỀ TIỂU SỬ 3",
     content: "Thông tin thêm về tiểu sử 3",
-    position: { top: "60%", left: "20%" }
+    position: { top: "60%", left: "30%" }
   }
 ];
 
@@ -72,7 +72,7 @@ function Bio() {
         <div
           key={item.id}
           className={`${styles.content_wrapper} ${visibleItems.includes(item.id) ? styles.show : ''}`}
-          style={{ top: item.position.top, left: item.position.left }}
+          style={{ top: item.position.top }}
         >
           <h1 className={styles.bio_title}>{item.title}</h1>
           <div className={styles.bio_box}>
