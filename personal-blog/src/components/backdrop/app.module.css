@@ -35,6 +35,10 @@
     animation-delay: calc(var(--index) * 0.1s);
 }
 
+.backdrop_name {
+    display: flex;
+}
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -93,4 +97,10 @@
 
 .letter:nth-child(12) {
     animation-delay: 1.2s;
+}
+
+@media (max-width: 544px) {
+    .backdrop_name {
+        flex-direction: column;
+    }
 }
