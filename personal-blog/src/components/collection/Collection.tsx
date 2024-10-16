@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './app.module.css'
 //works
 import work_1 from '../../assets/image/collection_1.jpg'
@@ -24,6 +24,7 @@ import { ImageType } from '../image-modal/ImageModal'
 
 function Collection() {
     const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
+    const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
 
     const openModal = (image: ImageType) => {
         setSelectedImage(image);
@@ -142,6 +143,32 @@ function Collection() {
         },
     ];
 
+    useEffect(() => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(styles.visible);
+                }
+            });
+        }, observerOptions);
+
+        imagesRef.current.forEach(img => {
+            if (img) observer.observe(img);
+        });
+
+        return () => {
+            imagesRef.current.forEach(img => {
+                if (img) observer.unobserve(img);
+            });
+        };
+    }, []);
+
     const findImageIndex = (image: ImageType) => images.findIndex((img) => img.src === image.src);
 
     const showPreviousImage = () => {
@@ -162,10 +189,15 @@ function Collection() {
 
     return (
         <div className={styles.collection_container}>
-            <h1 className={styles.title}>Đằng sau mỗi tác phẩm của tôi là một câu chuyện. <br />Hãy cùng thưởng thức chúng!</h1>
+            <h1 className={styles.title}>You use a glass mirror to see your face; <br /> you use works of art to see your soul <br /><span>"George Bernard Shaw"</span> </h1>
             <div className={styles.collection_works}>
                 {images.map((image, index) => (
-                    <div key={index} className={`${styles.collection_mansory_item}`} onClick={() => openModal(image)}>
+                    <div
+                        key={index}
+                        className={`${styles.collection_mansory_item} ${styles.fade_in}`}
+                        onClick={() => openModal(image)}
+                        ref={(el) => { imagesRef.current[index] = el }}
+                    >
                         <img src={image.src} alt={image.alt} />
                     </div>
                 ))}

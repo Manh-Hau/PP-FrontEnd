@@ -15,19 +15,28 @@ function Backdrop() {
                 priority />
             <div className={styles.backdrop_item}>
                 <h2>Artist</h2>
-                <h1>
-                    <span className={styles.letter}>P</span>
-                    <span className={styles.letter}>h</span>
-                    <span className={styles.letter}>a</span>
-                    <span className={styles.letter}>n</span>
+                <h1 className={styles.backdrop_name}>
+                    <div>
+                        <span className={styles.letter}>P</span>
+                        <span className={styles.letter}>h</span>
+                        <span className={styles.letter}>a</span>
+                        <span className={styles.letter}>n</span>
+                    </div>
+
                     <span className={styles.letter}> </span>
-                    <span className={styles.letter}>P</span>
-                    <span className={styles.letter}>h</span>
-                    <span className={styles.letter}>u</span>
+                    <div>
+                        <span className={styles.letter}>P</span>
+                        <span className={styles.letter}>h</span>
+                        <span className={styles.letter}>u</span>
+                    </div>
+
                     <span className={styles.letter}> </span>
-                    <span className={styles.letter}>Y</span>
-                    <span className={styles.letter}>e</span>
-                    <span className={styles.letter}>n</span>
+                    <div className={styles.last_letter}>
+                        <span className={styles.letter}>Y</span>
+                        <span className={styles.letter}>e</span>
+                        <span className={styles.letter}>n</span>
+                    </div>
+
                 </h1>
             </div>
         </div>

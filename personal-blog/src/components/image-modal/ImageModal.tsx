@@ -32,20 +32,28 @@ const ImageModal: React.FC<ImageModalProps> = ({ image, onClose, onPrevious, onN
     return (
         <div className={styles.lightbox_overlay} onClick={onClose}>
             <div className={styles.lightbox_content} onClick={(e) => e.stopPropagation()}>
-                <button className={styles.arrow_left} onClick={onPrevious}><ChevronLeft size={30} /></button>
+                <button className={styles.lightbox_close} onClick={onClose}>&times;</button>
+
                 <div className={styles.lightbox_image_container}>
                     <img src={image.src} alt={image.alt} className={styles.lightbox_image} />
+                    <button className={`${styles.arrow} ${styles.arrow_left}`} onClick={onPrevious}>
+                        <ChevronLeft size={24} />
+                    </button>
+                    <button className={`${styles.arrow} ${styles.arrow_right}`} onClick={onNext}>
+                        <ChevronRight size={24} />
+                    </button>
                 </div>
-                <button className={styles.arrow_right} onClick={onNext}><ChevronRight size={30} /></button>
+
                 <div className={styles.lightbox_details}>
                     <h2>{image.title}</h2>
-                    <p><strong>Chất liệu :</strong> {image.material}</p>
-                    <p><strong>Kích thước :</strong> {image.size}</p>
+                    <p><strong>Chất liệu:</strong> {image.material}</p>
+                    <p><strong>Kích thước:</strong> {image.size}</p>
                     <p><strong>Giá:</strong> {image.price}</p>
                     <p>{image.description}</p>
-                    <button onClick={() => handleNavigation('/contact')}>Liên hệ mua tranh</button>
+                    <button className={styles.contact_button} onClick={() => handleNavigation('/contact')}>
+                        Liên hệ mua tranh
+                    </button>
                 </div>
-                <button className={styles.lightbox_close} onClick={onClose}>&times;</button>
             </div>
         </div>
     )

@@ -13,23 +13,23 @@
 
 .lightbox_content {
     display: flex;
-    max-width: 90%;
-    max-height: 90vh;
+    flex-direction: column;
     width: 90%;
+    max-width: 1200px;
     height: 90vh;
+    background-color: #1a1a1a;
     overflow: hidden;
-    border-radius: 8px;
 }
 
 .lightbox_image_container {
-    flex: 2;
+    position: relative;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(240, 240, 240, 0.1);
+    min-height: 200px;
     overflow: hidden;
-    background-color: rgba(240, 240, 240, 0.5);
-    backdrop-filter: blur(1px);
-    border-radius: 8px;
 }
 
 .lightbox_image {
@@ -39,54 +39,45 @@
 }
 
 .lightbox_details {
-    flex: 1;
     padding: 20px;
-    overflow-y: auto;
     color: white;
+    flex-shrink: 0;
+    max-height: 40%;
+    overflow-y: auto;
 }
 
 .lightbox_details h2 {
-    font-size: 80px;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .lightbox_details p {
-    font-size: 20px;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
-
-.lightbox_details button {
-    padding: 6px 20px;
-    background-color: #FCCA0B;
-    border: #FCCA0B;
-    font-size: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 
 .lightbox_close {
     position: absolute;
     top: 10px;
     right: 10px;
+    background: none;
     border: none;
     color: white;
     font-size: 30px;
     cursor: pointer;
-    background-color: transparent;
+    z-index: 1001;
 }
 
-.arrow_left,
-.arrow_right {
+.arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     color: white;
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
     border: none;
-    padding: 10px;
     border-radius: 50%;
-    z-index: 1001;
 }
 
 .arrow_left {
@@ -95,4 +86,39 @@
 
 .arrow_right {
     right: 10px;
+}
+
+.contact_button {
+    padding: 8px 20px;
+    background-color: #FCCA0B;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+@media (min-width: 768px) {
+    .lightbox_content {
+        flex-direction: row;
+    }
+
+    .lightbox_image_container {
+        flex: 3;
+        min-height: auto;
+    }
+
+    .lightbox_details {
+        flex: 1;
+        max-width: 400px;
+        max-height: none;
+    }
+
+    .lightbox_details h2 {
+        font-size: 24px;
+    }
+
+    .lightbox_details p {
+        font-size: 16px;
+    }
 }
