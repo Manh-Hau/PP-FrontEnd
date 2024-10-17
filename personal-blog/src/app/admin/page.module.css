@@ -1,0 +1,56 @@
+.adminPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    background-color: #f0f0f0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: #333;
+    color: white;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.main {
+    flex: 1;
+    padding: 2rem;
+}
+
+.imageTable {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.imageTable th,
+.imageTable td {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.imageTable th {
+    background-color: #f2f2f2;
+}
+
+.thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.logout_button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #FCCA0B;
+}
