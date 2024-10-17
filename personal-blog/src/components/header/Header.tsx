@@ -8,43 +8,51 @@ import { useRouter } from 'next/navigation'
 
 function Header() {
     const router = useRouter()
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
 
     const handleNavigation = (path: string) => {
         router.push(path)
         setIsMenuOpen(false)
+        setIsSearchOpen(false)
     }
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+    const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
+
+    console.log('isMenuOpen', isMenuOpen)
 
     return (
-        <div className={styles.header_container}>
-            <img src={logo.src} alt='logo' className={styles.logo_image} />
+        <header className={styles.header_container}>
+            <img src={logo.src} alt="Logo" className={styles.logo_image} onClick={() => handleNavigation('/')} />
             <ul className={`${styles.header_items} ${isMenuOpen ? styles.open : ''}`}>
                 <li onClick={() => handleNavigation('/')}>TRANG CHỦ</li>
                 <li onClick={() => handleNavigation('/bio')}>TIỂU SỬ</li>
                 <li onClick={() => handleNavigation('/activities')}>HOẠT ĐỘNG</li>
                 <li onClick={() => handleNavigation('/media')}>TRUYỀN THÔNG</li>
                 <li onClick={() => handleNavigation('/contact')}>LIÊN HỆ</li>
-                {/* <li className={styles.language_selector}>
-                    <span>English</span>
-                    <span>Tiếng Việt</span>
-                </li> */}
             </ul>
             <div className={styles.header_right}>
-                <button>
-                    <User size={20} color="#000000" />
+                <button onClick={toggleSearch}>
+                    <Search size={20} color="#000000" />
                 </button>
                 <button>
-                    <Search size={20} color="#000000" />
+                    <User size={20} color="#000000" />
                 </button>
                 <button className={styles.menu_button} onClick={toggleMenu}>
                     {isMenuOpen ? <X size={24} color="#000000" /> : <Menu size={24} color="#000000" />}
                 </button>
             </div>
-        </div>
+
+            {isSearchOpen && (
+                <div className={`${styles.search_overlay} ${isSearchOpen ? styles.show : ''}`}>
+                    <input type="text" placeholder="Search..." className={styles.search_input} />
+                    <button onClick={toggleSearch} className={styles.close_search_button}>
+                        {isSearchOpen ? <X /> : <div />}
+                    </button>
+                </div>
+            )}
+        </header>
     )
 }
 
