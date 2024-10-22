@@ -4,6 +4,7 @@
     overflow: hidden;
     box-shadow: rgba(230, 231, 233, 0.786) 0px 20px 30px -15px;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .workBox:hover {

@@ -21,10 +21,15 @@ import work_15 from '../../assets/image/work_13.jpg'
 import { useState } from 'react'
 import { ImageModal } from '../image-modal'
 import { ImageType } from '../image-modal/ImageModal'
+import { useGetCollectionQuery } from '@/hooks/useGetCollection'
 
 function Collection() {
     const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
     const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
+
+    const { data: listCollection, isLoading } = useGetCollectionQuery()
+
+    console.log('listCollection', listCollection)
 
     const openModal = (image: ImageType) => {
         setSelectedImage(image);

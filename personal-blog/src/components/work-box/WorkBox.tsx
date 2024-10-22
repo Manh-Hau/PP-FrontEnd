@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     imageSrc: string,
     title: string,
     period: string
+    detail: number;
 }
 
-const WorkBox = ({ imageSrc, title, period }: Props) => {
-    const [isClicked, setIsClicked] = useState(false);
+const WorkBox = ({ imageSrc, title, period, detail }: Props) => {
+    const route = useRouter()
 
-    const handleClick = () => {
-        setIsClicked(true);
-        setTimeout(() => setIsClicked(false), 300);
+    const handleClickDetail = () => {
+        route.push(`/activities/details-${detail}`)
     };
 
     return (
-        <div className={styles.workBox}>
+        <div className={styles.workBox} onClick={handleClickDetail}>
             <div className={styles.imageContainer}>
                 <Image
                     src={imageSrc}

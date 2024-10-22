@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { LogOutIcon } from 'lucide-react'
 import styles from './page.module.css';
+import { Table } from '@/components/table';
 
 interface Image {
     id: number;
@@ -30,6 +31,19 @@ const AdminPage: React.FC = () => {
 
     }
 
+    const headers = ['Name', 'Age', 'Country'];
+    const data = [
+        ['John Doe', 30, 'USA'],
+        ['Jane Smith', 25, 'Canada'],
+        ['Mike Johnson', 35, 'UK'],
+        ['John Doe', 30, 'USA'],
+        ['Jane Smith', 25, 'Canada'],
+        ['Mike Johnson', 35, 'UK'],
+        ['John Doe', 30, 'USA'],
+        ['Jane Smith', 25, 'Canada'],
+        ['Mike Johnson', 35, 'UK'],
+    ];
+
     return (
         <div className={styles.adminPage}>
             <header className={styles.header}>
@@ -39,7 +53,12 @@ const AdminPage: React.FC = () => {
                     <button onClick={handleLogout} className={styles.logout_button}><LogOutIcon size={24} /></button>
                 </div>
             </header>
-
+            <div className={styles.body}>
+                <Table headers={headers}
+                    data={data}
+                    itemsPerPage={5}
+                    filterColumn={0} />
+            </div>
         </div>
     );
 };
