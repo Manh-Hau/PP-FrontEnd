@@ -1,7 +1,6 @@
-// components/Table.tsx
 import React, { useState, useMemo } from 'react';
 import styles from './page.module.css';
-import { ChevronLastIcon, ChevronFirstIcon } from 'lucide-react'
+import { ChevronLastIcon, ChevronFirstIcon, Pencil, Trash2 } from 'lucide-react';
 
 interface TableProps {
     headers: string[];
@@ -9,6 +8,8 @@ interface TableProps {
     className?: string;
     itemsPerPage?: number;
     filterColumn?: number;
+    onEdit?: (rowIndex: number) => void;
+    onDelete?: (rowIndex: number) => void;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -16,7 +17,9 @@ const Table: React.FC<TableProps> = ({
     data,
     className,
     itemsPerPage = 10,
-    filterColumn
+    filterColumn,
+    onEdit,
+    onDelete
 }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState('');
@@ -33,6 +36,20 @@ const Table: React.FC<TableProps> = ({
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
+
+    const handleEdit = (rowIndex: number) => {
+        if (onEdit) {
+            const actualIndex = (currentPage - 1) * itemsPerPage + rowIndex;
+            onEdit(actualIndex);
+        }
+    };
+
+    const handleDelete = (rowIndex: number) => {
+        if (onDelete) {
+            const actualIndex = (currentPage - 1) * itemsPerPage + rowIndex;
+            onDelete(actualIndex);
+        }
+    };
 
     return (
         <div className={styles.tableContainer}>
@@ -61,6 +78,22 @@ const Table: React.FC<TableProps> = ({
                             {row.map((cell, cellIndex) => (
                                 <td key={cellIndex} className={styles.td}>{cell}</td>
                             ))}
+                            <td className={`${styles.td} ${styles.actionColumn}`}>
+                                <button
+                                    onClick={() => handleEdit(rowIndex)}
+                                    className={styles.actionButton}
+                                    title="Edit"
+                                >
+                                    <Pencil size={16} className={styles.editIcon} />
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(rowIndex)}
+                                    className={styles.actionButton}
+                                    title="Delete"
+                                >
+                                    <Trash2 size={16} className={styles.deleteIcon} />
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,6 +1,10 @@
 .tableContainer {
-
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -25,6 +29,32 @@
 
 tr:hover .td {
     background-color: #f1f5f9;
+}
+
+.actionColumn {
+    width: 100px;
+    text-align: center;
+}
+
+.actionButton {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 0 0.25rem;
+}
+
+.actionButton:hover {
+    transform: scale(1.1);
+}
+
+.editIcon {
+    color: #3b82f6;
+}
+
+.deleteIcon {
+    color: #ef4444;
 }
 
 .pagination {
