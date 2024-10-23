@@ -31,7 +31,7 @@ const AdminPage: React.FC = () => {
 
     }
 
-    const headers = ['Name', 'Age', 'Country'];
+    const headers = ['Name', 'Age', 'Country', 'Action'];
     const data = [
         ['John Doe', 30, 'USA'],
         ['Jane Smith', 25, 'Canada'],

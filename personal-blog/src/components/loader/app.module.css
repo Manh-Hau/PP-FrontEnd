@@ -1,0 +1,34 @@
+/* Loader.css */
+.loader__svg {
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+}
+
+.loader__background {
+    fill: #e5e7eb;
+    /* text-gray-200 */
+}
+
+.loader__spinner {
+    fill: #ffffff;
+    /* fill-white */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    .loader__background {
+        fill: #4b5563;
+        /* dark:text-gray-600 */
+    }
+}
