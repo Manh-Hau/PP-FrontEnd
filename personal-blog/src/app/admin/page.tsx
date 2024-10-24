@@ -31,6 +31,17 @@ const AdminPage: React.FC = () => {
     const { data: response, isLoading } = useGetCollectionQuery()
     const listCollection = response?.data.data as ImageType[] || []
 
+    const dataTable: ImageType[] = listCollection.map((item: any) => ({
+        id: item.id,
+        src: item.url,
+        alt: item.name,
+        title: item.name,
+        material: item.material,
+        price: item.price,
+        size: item.size,
+        timestamp: item.timestamp
+    }));
+
     console.log('listCollection', listCollection)
     const handleAddImage = () => {
         if (newImage.name && newImage.url) {
@@ -44,7 +55,7 @@ const AdminPage: React.FC = () => {
 
     }
 
-    const headers = ['Name', 'Age', 'Country', 'Action'];
+    const headers = ['Hình ảnh', 'Tên', 'Chất liệu', 'Kích thước', 'Giá', 'Năm', 'Thao tác'];
     const data = [
         ['John Doe', 30, 'USA'],
         ['Jane Smith', 25, 'Canada'],
@@ -87,11 +98,12 @@ const AdminPage: React.FC = () => {
             <div className={styles.body}>
                 <Table
                     headers={headers}
-                    data={data}
+                    data={dataTable}
                     itemsPerPage={5}
-                    filterColumn={0}
+                    filterColumn="title"
                     onEdit={handleEdit}
                     onDelete={handleDelete}
+                    loading={isLoading}
                 />
             </div>
             {/* <Dialog

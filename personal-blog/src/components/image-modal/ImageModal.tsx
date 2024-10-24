@@ -6,6 +6,7 @@ import styles from './app.module.css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export type ImageType = {
+    id: number;
     src: string;
     alt: string;
     title?: string;
@@ -13,6 +14,7 @@ export type ImageType = {
     price?: string;
     description?: string;
     size?: string;
+    timestamp?: string;
 };
 
 

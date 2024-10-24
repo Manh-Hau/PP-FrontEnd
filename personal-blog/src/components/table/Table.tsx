@@ -1,15 +1,29 @@
 import React, { useState, useMemo } from 'react';
 import styles from './page.module.css';
 import { ChevronLastIcon, ChevronFirstIcon, Pencil, Trash2 } from 'lucide-react';
+import { Loader } from '../loader';
+
+interface Image {
+    id: number;
+    src: string;
+    alt: string;
+    title?: string;
+    material?: string;
+    price?: string;
+    description?: string;
+    size?: string;
+    timestamp?: string;
+}
 
 interface TableProps {
     headers: string[];
-    data: any[][];
+    data: Image[];
     className?: string;
     itemsPerPage?: number;
-    filterColumn?: number;
-    onEdit?: (rowIndex: number) => void;
-    onDelete?: (rowIndex: number) => void;
+    filterColumn?: string;
+    onEdit?: (index: number) => void;
+    onDelete?: (index: number) => void;
+    loading?: boolean
 }
 
 const Table: React.FC<TableProps> = ({
@@ -19,15 +33,17 @@ const Table: React.FC<TableProps> = ({
     itemsPerPage = 10,
     filterColumn,
     onEdit,
-    onDelete
+    onDelete,
+    loading
 }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState('');
 
     const filteredData = useMemo(() => {
-        if (!filter || filterColumn === undefined) return data;
-        return data.filter(row =>
-            row[filterColumn].toString().toLowerCase().includes(filter.toLowerCase())
+        if (!filter || !filterColumn) return data;
+        console.log('avc', data)
+        return data.filter(item =>
+            item[filterColumn as keyof Image]?.toString().toLowerCase().includes(filter.toLowerCase())
         );
     }, [data, filter, filterColumn]);
 
@@ -37,27 +53,25 @@ const Table: React.FC<TableProps> = ({
         currentPage * itemsPerPage
     );
 
-    const handleEdit = (rowIndex: number) => {
+    const handleEdit = (image: Image) => {
         if (onEdit) {
-            const actualIndex = (currentPage - 1) * itemsPerPage + rowIndex;
-            onEdit(actualIndex);
+            // onEdit(image);
         }
     };
 
-    const handleDelete = (rowIndex: number) => {
+    const handleDelete = (image: Image) => {
         if (onDelete) {
-            const actualIndex = (currentPage - 1) * itemsPerPage + rowIndex;
-            onDelete(actualIndex);
+            // onDelete(image);
         }
     };
 
     return (
         <div className={styles.tableContainer}>
-            {filterColumn !== undefined && (
+            {filterColumn && (
                 <div className={styles.filterContainer}>
                     <input
                         type="text"
-                        placeholder={`Filter by ${headers[filterColumn]}`}
+                        placeholder={`Tìm kiếm theo tên`}
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                         className={styles.filterInput}
@@ -73,23 +87,32 @@ const Table: React.FC<TableProps> = ({
                     </tr>
                 </thead>
                 <tbody>
-                    {paginatedData.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {row.map((cell, cellIndex) => (
-                                <td key={cellIndex} className={styles.td}>{cell}</td>
-                            ))}
+                    {loading ? <Loader className={styles.loader} /> : paginatedData.map((item) => (
+                        <tr key={item.id}>
+                            <td className={`${styles.td} ${styles.imageCell}`}>
+                                <img
+                                    src={item.src}
+                                    alt={item.alt}
+                                    className={styles.thumbnailImage}
+                                />
+                            </td>
+                            <td className={styles.td}>{item.title}</td>
+                            <td className={styles.td}>{item.material}</td>
+                            <td className={styles.td}>{item.size}</td>
+                            <td className={styles.td}>{item.price}</td>
+                            <td className={styles.td}>{item.timestamp}</td>
                             <td className={`${styles.td} ${styles.actionColumn}`}>
                                 <button
-                                    onClick={() => handleEdit(rowIndex)}
+                                    onClick={() => handleEdit(item)}
                                     className={styles.actionButton}
-                                    title="Edit"
+                                    title="Chỉnh sửa"
                                 >
                                     <Pencil size={16} className={styles.editIcon} />
                                 </button>
                                 <button
-                                    onClick={() => handleDelete(rowIndex)}
+                                    onClick={() => handleDelete(item)}
                                     className={styles.actionButton}
-                                    title="Delete"
+                                    title="Xóa"
                                 >
                                     <Trash2 size={16} className={styles.deleteIcon} />
                                 </button>

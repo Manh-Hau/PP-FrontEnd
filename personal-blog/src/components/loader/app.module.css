@@ -1,18 +1,22 @@
-/* Loader.css */
-.loader__svg {
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
     width: 16px;
     height: 16px;
     animation: spin 1s linear infinite;
 }
 
-.loader__background {
-    fill: #e5e7eb;
-    /* text-gray-200 */
+.spinner path:first-child {
+    color: #e5e7eb;
+    fill: currentColor;
 }
 
-.loader__spinner {
-    fill: #ffffff;
-    /* fill-white */
+.spinner path:last-child {
+    fill: #fff;
 }
 
 @keyframes spin {
@@ -25,10 +29,9 @@
     }
 }
 
-/* Dark mode */
+/* Trong dark mode */
 @media (prefers-color-scheme: dark) {
-    .loader__background {
-        fill: #4b5563;
-        /* dark:text-gray-600 */
+    .spinner path:first-child {
+        color: #4b5563;
     }
 }
