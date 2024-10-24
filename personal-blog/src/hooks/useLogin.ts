@@ -8,7 +8,7 @@ export const useLoginMutation = () => {
     return useMutation<TBaseResponse<any>, Error, TLoginRequest>({
         mutationFn: (data) => authApi.login(data),
         onSuccess: () => {
-            // queryClient.invalidateQueries({ queryKey: ["gift"] });
+            queryClient.invalidateQueries({ queryKey: ["auth"] });
         },
     });
 };

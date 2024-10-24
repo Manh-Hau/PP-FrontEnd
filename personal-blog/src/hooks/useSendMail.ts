@@ -7,7 +7,7 @@ export const useSendMailMutation = () => {
     return useMutation<TBaseResponse<any>, Error, { content: string }>({
         mutationFn: (data) => contactApi.sendMail(data),
         onSuccess: () => {
-            // queryClient.invalidateQueries({ queryKey: ["gift"] });
+            queryClient.invalidateQueries({ queryKey: ["mail"] });
         },
     });
 };
