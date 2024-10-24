@@ -39,12 +39,27 @@ const Table: React.FC<TableProps> = ({
     const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState('');
 
+    const removeAccents = (str: string): string => {
+        return str.normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd')
+            .replace(/Đ/g, 'D');
+    };
+
     const filteredData = useMemo(() => {
         if (!filter || !filterColumn) return data;
-        console.log('avc', data)
-        return data.filter(item =>
-            item[filterColumn as keyof Image]?.toString().toLowerCase().includes(filter.toLowerCase())
-        );
+        
+        const normalizedFilter = filter.toLowerCase();
+        const noAccentFilter = removeAccents(normalizedFilter);
+
+        return data.filter(item => {
+            const value = item[filterColumn as keyof Image]?.toString() || '';
+            const normalizedValue = value.toLowerCase();
+            const noAccentValue = removeAccents(normalizedValue);
+
+            return normalizedValue.includes(normalizedFilter) || 
+                   noAccentValue.includes(noAccentFilter);
+        });
     }, [data, filter, filterColumn]);
 
     const pageCount = Math.ceil(filteredData.length / itemsPerPage);
