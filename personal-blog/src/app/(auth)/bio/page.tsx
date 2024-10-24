@@ -12,23 +12,30 @@ interface ContentItem {
   position: { top: string; left: string };
 }
 
+
+
+
+
+
+
+
 const contentItems: ContentItem[] = [
   {
     id: 1,
-    title: "TÓM TẮT VỀ TIỂU SỬ 1",
-    content: "Hoạ sĩ Phan Phú Yên (1996)\nQuên quán: Phú Yên.\nTốt nghiệp đại học Kiến Trúc Tp.Hồ Chí Minh.",
+    title: "TIỂU SỬ",
+    content: "Họa sĩ Phan Phú Yên\n Sinh năm 1996 tại tỉnh Phú Yên",
     position: { top: "20%", left: "30%" }
   },
   {
     id: 2,
-    title: "TÓM TẮT VỀ TIỂU SỬ 2",
-    content: "Thông tin thêm về tiểu sử 2",
+    title: "",
+    content: "2002 – 2014: Học tiểu học, Trung học, Trung học phổ thông tại Thị trấn La Hai, Huyện Đồng Xuân, Tỉnh Phú Yên\n 2014 – 2019: Học tại trường Đại học Kiến Trúc Thành phố Hồ Chí Minh",
     position: { top: "40%", left: "30%" }
   },
   {
     id: 3,
-    title: "TÓM TẮT VỀ TIỂU SỬ 3",
-    content: "Thông tin thêm về tiểu sử 3",
+    title: "",
+    content: "2019 - đến nay: Sống và làm việc tại Thành phố Hồ Chí Minh\n 09/11 – 15/11/2024: Triển lãm cá nhân – Hoa Vàng Trên Cỏ Xanh tại Hawaii Art Place, Thành phố Hồ Chí Minh.",
     position: { top: "60%", left: "30%" }
   }
 ];
@@ -78,7 +85,7 @@ function Bio() {
           <div className={styles.bio_box}>
             {item.content.split('\n').map((line, index) => (
               <React.Fragment key={index}>
-                {line}
+                <div>{line}</div>
                 <br />
               </React.Fragment>
             ))}

@@ -1,3 +1,4 @@
+import QueryProvider from "@/provider/query-provider";
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import styles from "./page.module.css";
@@ -20,9 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${josefinSans.className} ${styles.main} antialiased`}>
-        {children}
-      </body>
+      <QueryProvider>
+        <body className={`${josefinSans.className} ${styles.main} antialiased`}>
+          {children}
+        </body>
+      </QueryProvider>
     </html>
   );
 }

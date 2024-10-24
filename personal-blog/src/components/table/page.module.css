@@ -1,0 +1,108 @@
+.tableContainer {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.th,
+.td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: middle;
+}
+
+.th {
+    background-color: #f8fafc;
+    font-weight: bold;
+}
+
+.td {
+    background-color: #ffffff;
+}
+
+.imageCell {
+    width: 100px;
+    padding: 0.5rem;
+}
+
+.thumbnailImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+tr:hover .td {
+    background-color: #f1f5f9;
+}
+
+.actionColumn {
+    width: 100px;
+    text-align: center;
+}
+
+.actionButton {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 0 0.25rem;
+}
+
+.actionButton:hover {
+    transform: scale(1.1);
+}
+
+.editIcon {
+    color: #3b82f6;
+}
+
+.deleteIcon {
+    color: #ef4444;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    margin: 0 0.5rem;
+}
+
+.filterContainer {
+    margin-bottom: 1rem;
+    max-width: 300px;
+}
+
+.filterInput {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+}

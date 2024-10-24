@@ -1,0 +1,38 @@
+.loader {
+    display: inline-block;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+}
+
+.spinner path:first-child {
+    color: #e5e7eb;
+    fill: currentColor;
+}
+
+.spinner path:last-child {
+    fill: #fff;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Trong dark mode */
+@media (prefers-color-scheme: dark) {
+    .spinner path:first-child {
+        color: #4b5563;
+    }
+}
