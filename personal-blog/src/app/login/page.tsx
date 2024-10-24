@@ -1,15 +1,27 @@
 "use client"
 
+import { Loader } from '@/components/loader';
+import { useLoginMutation } from '@/hooks/useLogin';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import styles from "./page.module.css";
 
 const LoginPage = () => {
+    const router = useRouter()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { mutate: login, isPending } = useLoginMutation()
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Login submitted', { email, password });
+        login({ email, password }, {
+            onSuccess: () => {
+                router.push('/admin')
+            },
+            onError: (error: any) => {
+                console.log('error', error)
+            }
+        })
     };
 
     return (
@@ -34,7 +46,7 @@ const LoginPage = () => {
                         required
                     />
                     <button type="submit" className={styles.loginButton}>
-                        Log In
+                        {isPending ? <Loader /> : undefined} Log In
                     </button>
                 </form>
             </div>

@@ -11,8 +11,10 @@ import { ImagePicker } from '@/components/image-picker';
 import { useGetCollectionQuery } from '@/hooks/useGetCollection';
 import { useGetCollectionByAdminQuery } from '@/hooks/useGetCollectionByAdmin';
 import { Image } from '@/components/image-modal/ImageModal';
+import { useRouter } from 'next/navigation';
 
 const AdminPage: React.FC = () => {
+    const router = useRouter()
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [images, setImages] = useState<Image[]>([]);
     const [newImage, setNewImage] = useState<Partial<Image>>({});
@@ -45,21 +47,10 @@ const AdminPage: React.FC = () => {
     };
 
     const handleLogout = () => {
-
+        router.push('/')
     }
 
     const headers = ['Hình ảnh', 'Tên', 'Chất liệu', 'Kích thước', 'Giá', 'Năm', 'Thao tác'];
-    const data = [
-        ['John Doe', 30, 'USA'],
-        ['Jane Smith', 25, 'Canada'],
-        ['Mike Johnson', 35, 'UK'],
-        ['John Doe', 30, 'USA'],
-        ['Jane Smith', 25, 'Canada'],
-        ['Mike Johnson', 35, 'UK'],
-        ['John Doe', 30, 'USA'],
-        ['Jane Smith', 25, 'Canada'],
-        ['Mike Johnson', 35, 'UK'],
-    ];
 
     const handleEdit = (index: number) => {
         console.log('Edit row:', index);

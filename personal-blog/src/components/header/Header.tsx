@@ -39,9 +39,14 @@ function Header() {
     }
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+
     const toggleSearch = () => {
         setSearch('')
         setIsSearchOpen(!isSearchOpen)
+    }
+
+    const toggleLogin = () => {
+        router.push('/login')
     }
 
     const removeAccents = (str: string): string => {
@@ -91,7 +96,7 @@ function Header() {
                     <button onClick={toggleSearch}>
                         <Search size={20} color="#000000" />
                     </button>
-                    <button>
+                    <button onClick={toggleLogin}>
                         <User size={20} color="#000000" />
                     </button>
                     <button className={styles.menu_button} onClick={toggleMenu}>

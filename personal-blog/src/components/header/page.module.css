@@ -151,7 +151,7 @@
 
 .search_results_container {
     width: 100%;
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     padding: 0 20px;
     overflow-y: auto;
@@ -166,7 +166,7 @@
 }
 
 .search_result_item:hover {
-    background-color: rgba(243, 240, 236, 0.8);
+    background-color: rgba(232, 191, 137, 0.8);
 }
 
 .item_image {
