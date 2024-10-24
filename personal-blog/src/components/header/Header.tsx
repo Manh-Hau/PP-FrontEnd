@@ -5,11 +5,16 @@ import styles from './page.module.css'
 import logo from '../../assets/image/logo.png'
 import { User, Search, Menu, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useGetCollectionQuery } from '@/hooks/useGetCollection'
+import { Image } from '../image-modal/ImageModal'
 
 function Header() {
     const router = useRouter()
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
+
+    const { data: response, isLoading } = useGetCollectionQuery()
+    const listCollection = response?.data.data as Image[] || []
 
     const handleNavigation = (path: string) => {
         router.push(path)

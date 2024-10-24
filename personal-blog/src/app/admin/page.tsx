@@ -9,16 +9,8 @@ import Button from '@/components/button/Button';
 import { Input } from '@/components/input';
 import { ImagePicker } from '@/components/image-picker';
 import { useGetCollectionQuery } from '@/hooks/useGetCollection';
-import { ImageType } from '@/components/image-modal/ImageModal';
-
-interface Image {
-    id: number;
-    name: string;
-    material: string;
-    size: string;
-    price: number;
-    url: string;
-}
+import { useGetCollectionByAdminQuery } from '@/hooks/useGetCollectionByAdmin';
+import { Image } from '@/components/image-modal/ImageModal';
 
 const AdminPage: React.FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -28,15 +20,16 @@ const AdminPage: React.FC = () => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [imgFile, setImgFile] = useState<File>();
 
-    const { data: response, isLoading } = useGetCollectionQuery()
-    const listCollection = response?.data.data as ImageType[] || []
+    const { data: response, isLoading } = useGetCollectionByAdminQuery()
+    const listCollection = response?.data.data as Image[] || []
 
-    const dataTable: ImageType[] = listCollection.map((item: any) => ({
+    const dataTable: Image[] = listCollection.map((item: any) => ({
         id: item.id,
         src: item.url,
         alt: item.name,
         title: item.name,
         material: item.material,
+        description: item.description,
         price: item.price,
         size: item.size,
         timestamp: item.timestamp
@@ -44,7 +37,7 @@ const AdminPage: React.FC = () => {
 
     console.log('listCollection', listCollection)
     const handleAddImage = () => {
-        if (newImage.name && newImage.url) {
+        if (newImage.title && newImage.src) {
             setImages([...images, { ...newImage, id: Date.now() } as Image]);
             setNewImage({});
             setIsDialogOpen(false);

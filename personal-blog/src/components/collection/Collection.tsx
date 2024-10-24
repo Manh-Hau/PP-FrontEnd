@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react'
 import styles from './app.module.css'
 import { useState } from 'react'
 import { ImageModal } from '../image-modal'
-import { ImageType } from '../image-modal/ImageModal'
+import { Image as ImageType } from '../image-modal/ImageModal'
 import { useGetCollectionQuery } from '@/hooks/useGetCollection'
 
 function Collection() {
@@ -14,12 +14,13 @@ function Collection() {
     const { data: response, isLoading } = useGetCollectionQuery()
     const listCollection = response?.data.data as ImageType[] || []
 
-    // Transform API data to match ImageType format
     const images: ImageType[] = listCollection.map((item: any) => ({
+        id: item.id,
         src: item.url,
         alt: item.name,
         title: item.name,
         material: item.material,
+        description: item.description,
         price: item.price,
         size: item.size,
         timestamp: item.timestamp

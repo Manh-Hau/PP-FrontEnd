@@ -5,21 +5,21 @@ import React from 'react'
 import styles from './app.module.css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-export type ImageType = {
+export interface Image {
     id: number;
     src: string;
     alt: string;
-    title?: string;
-    material?: string;
-    price?: string;
-    description?: string;
-    size?: string;
-    timestamp?: string;
-};
+    title: string;
+    material: string;
+    price: string;
+    description: string;
+    size: string;
+    timestamp: string;
+}
 
 
 interface ImageModalProps {
-    image: ImageType;
+    image: Image;
     onClose: () => void;
     onPrevious: () => void;
     onNext: () => void;

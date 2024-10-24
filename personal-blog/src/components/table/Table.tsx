@@ -7,12 +7,12 @@ interface Image {
     id: number;
     src: string;
     alt: string;
-    title?: string;
-    material?: string;
-    price?: string;
-    description?: string;
-    size?: string;
-    timestamp?: string;
+    title: string;
+    material: string;
+    price: string;
+    description: string;
+    size: string;
+    timestamp: string;
 }
 
 interface TableProps {
@@ -65,6 +65,8 @@ const Table: React.FC<TableProps> = ({
         }
     };
 
+    const formatJSON = (input: string) => input.length ? JSON.parse(input) : ''
+
     return (
         <div className={styles.tableContainer}>
             {filterColumn && (
@@ -97,9 +99,9 @@ const Table: React.FC<TableProps> = ({
                                 />
                             </td>
                             <td className={styles.td}>{item.title}</td>
-                            <td className={styles.td}>{item.material}</td>
+                            <td className={styles.td}>{formatJSON(item.material).vn}-{formatJSON(item.material).en}</td>
                             <td className={styles.td}>{item.size}</td>
-                            <td className={styles.td}>{item.price}</td>
+                            <td className={styles.td}>{formatJSON(item.price).vn}-{formatJSON(item.price).en}</td>
                             <td className={styles.td}>{item.timestamp}</td>
                             <td className={`${styles.td} ${styles.actionColumn}`}>
                                 <button

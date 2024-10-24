@@ -9,6 +9,8 @@ const collectionApi = {
     postRequest("/item", data, true),
   getCollection: (): Promise<TBaseResponse<any[]>> =>
     axiosClient.get("/getAllImages?lang=vn"),
+  getCollectionByAdmin: (): Promise<TBaseResponse<any[]>> =>
+    axiosClient.get("/getAllImagesAdmin?lang=vn"),
   updateCollectionItem: (id: string): Promise<TBaseResponse<any>> =>
     axiosClient.get(`/item/${id}`),
   updateWheelItem: (data: FormData): Promise<TBaseResponse<any>> =>
