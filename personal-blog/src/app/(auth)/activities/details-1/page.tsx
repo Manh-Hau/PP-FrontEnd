@@ -17,53 +17,157 @@ import work_13 from '../../../../assets/image/work_11.jpg'
 import work_14 from '../../../../assets/image/work_12.jpg'
 import work_15 from '../../../../assets/image/work_13.jpg'
 
-import { ImageType } from '@/components/image-modal/ImageModal'
+import { Image as ImageType } from '@/components/image-modal/ImageModal'
 
 function ActivityDetails() {
     const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
 
     const images: ImageType[] = [
         {
+            id: 1,
             src: work_5.src,
             alt: 'ac_1',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_6.src, alt: 'ac_2',
+            id: 2,
+            src: work_6.src,
+            alt: 'ac_2',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_3.src, alt: 'ac_3',
+            id: 3,
+            src: work_3.src,
+            alt: 'ac_3',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_4.src, alt: 'ac_4',
+            id: 4,
+            src: work_4.src,
+            alt: 'ac_4',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_7.src, alt: 'ac_2',
+            id: 5,
+            src: work_7.src,
+            alt: 'ac_2',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_8.src, alt: 'ac_3',
+            id: 6,
+            src: work_8.src,
+            alt: 'ac_3',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_9.src, alt: 'ac_4',
+            id: 7,
+            src: work_9.src,
+            alt: 'ac_4',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_10.src, alt: 'ac_2',
+            id: 8,
+            src: work_10.src,
+            alt: 'ac_2',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_11.src, alt: 'ac_3',
+            id: 9,
+            src: work_11.src,
+            alt: 'ac_3',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_12.src, alt: 'ac_4',
+            id: 10,
+            src: work_12.src,
+            alt: 'ac_4',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_13.src, alt: 'ac_2',
+            id: 11,
+            src: work_13.src,
+            alt: 'ac_2',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_14.src, alt: 'ac_3',
+            id: 12,
+            src: work_14.src,
+            alt: 'ac_3',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         },
         {
-            src: work_15.src, alt: 'ac_4',
+            id: 13,
+            src: work_15.src,
+            alt: 'ac_4',
+            title: '',
+            material: '',
+            price: '',
+            description: '',
+            size: '',
+            timestamp: ''
         }
     ];
+
 
     useEffect(() => {
         const observerOptions = {
