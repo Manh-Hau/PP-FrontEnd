@@ -6,9 +6,6 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Phan Phu Yen",
   description: "This is Phan Phu Yen Blog",
-  icons: {
-    icon: "/assets/image/bio_2.jpg",
-  },
 };
 
 const josefinSans = Josefin_Sans({ subsets: ["latin"] });
