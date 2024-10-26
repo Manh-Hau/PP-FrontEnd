@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import styles from "./page.module.css";
 import toast from 'react-hot-toast'
 import { useLanguage } from '@/provider/language-provider';
+import Cookies from 'js-cookie';
 
 const LoginPage = () => {
     const router = useRouter()
@@ -18,8 +19,13 @@ const LoginPage = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        const user = {
+            email,
+            password
+        }
         login({ email, password }, {
             onSuccess: () => {
+                Cookies.set('user', JSON.stringify(user));
                 router.push('/admin')
             },
             onError: (error: any) => {

@@ -63,7 +63,12 @@ export const en = {
         find_by_name: 'Find by name'
     },
     activities: {
-        header: 'ACTIVITIES'
+        header: 'ACTIVITIES',
+        activity_1: 'The Yellow Flowers on the Green Grass Solo Exhibition',
+        activity_2: 'Charity Fundraising Auction for the Miss and Mister Eurasia Program',
+        activity_3: 'First Prize for Creative Artwork on the Land and People of Romania',
+        activity_4: 'Second Prize in the Conical Hat Decoration Contest Celebrating 1978 Years of the Hai Ba Trung Uprising and 108 Years of International Women’s Day',
+        activity_5: 'Mural'
     },
     bio: {
         title: 'BIO',

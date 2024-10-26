@@ -13,11 +13,11 @@ import { useLanguage } from '@/provider/language-provider'
 function Activities() {
     const { translations } = useLanguage()
     const activities = [
-        { imageSrc: work_5.src, title: "Triển lãm cá nhân Hoa Vàng Trên Cỏ Xanh", period: "2024", detail: 1 },
-        { imageSrc: work_1.src, title: "Đấu tranh giá gây quỹ từ thiện chương trình Hoa Hậu Nam Vương Á Âu", period: "2019", detail: 2 },
-        { imageSrc: work_2.src, title: "Giải nhất sáng tạo tác phẩm nghệ thuật về Đất nước con người Rumania", period: "2018", detail: 3 },
-        { imageSrc: work_3.src, title: "Giải nhì hội thi trang trí nón lá kỉ niệm 1978 năm khởi nghĩa Hai Bà Trưng - 108 năm Quốc tế Phụ Nữ", period: "2018", detail: 4 },
-        { imageSrc: work_4.src, title: "Tranh tường", period: "", detail: 5 },
+        { imageSrc: work_5.src, title: translations.activities.activity_1, period: "2024", detail: 1 },
+        { imageSrc: work_1.src, title: translations.activities.activity_2, period: "2019", detail: 2 },
+        { imageSrc: work_2.src, title: translations.activities.activity_3, period: "2018", detail: 3 },
+        { imageSrc: work_3.src, title: translations.activities.activity_4, period: "2018", detail: 4 },
+        { imageSrc: work_4.src, title: translations.activities.activity_5, period: "", detail: 5 },
     ];
 
 

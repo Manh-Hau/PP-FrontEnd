@@ -63,7 +63,12 @@ export const vn = {
         find_by_name: 'Tìm kiếm theo tên'
     },
     activities: {
-        header: 'HOẠT ĐỘNG'
+        header: 'HOẠT ĐỘNG',
+        activity_1: 'Triển lãm cá nhân Hoa Vàng Trên Cỏ Xanh',
+        activity_2: 'Đấu tranh giá gây quỹ từ thiện chương trình Hoa Hậu Nam Vương Á Âu',
+        activity_3: 'Giải nhất sáng tạo tác phẩm nghệ thuật về Đất nước con người Rumania',
+        activity_4: 'Giải nhì hội thi trang trí nón lá kỉ niệm 1978 năm khởi nghĩa Hai Bà Trưng - 108 năm Quốc tế Phụ Nữ',
+        activity_5: 'Tranh tường'
     },
     bio: {
         title: 'TIỂU SỬ',

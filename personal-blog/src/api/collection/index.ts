@@ -7,10 +7,10 @@ const collectionApi = {
     data: FormData
   ): Promise<TBaseResponse<any>> =>
     postRequest("/uploadImage", data, true),
-  getCollection: (): Promise<TBaseResponse<any[]>> =>
-    axiosClient.get("/getAllImages?lang=vn"),
+  getCollection: (language: string): Promise<TBaseResponse<any[]>> =>
+    axiosClient.get(`/getAllImages?lang=${language}`),
   getCollectionByAdmin: (): Promise<TBaseResponse<any[]>> =>
-    axiosClient.get("/getAllImagesAdmin?lang=vn"),
+    axiosClient.get("/getAllImagesAdmin"),
   updateCollectionItem: (data: FormData): Promise<TBaseResponse<any>> =>
     postRequest(`/updateImage`, data, true),
   deleteCollectionItem: (id: string): Promise<TBaseResponse<any>> =>

@@ -6,12 +6,14 @@ import { useState } from 'react'
 import { ImageModal } from '../image-modal'
 import { Image as ImageType } from '../image-modal/ImageModal'
 import { useGetCollectionQuery } from '@/hooks/useGetCollection'
+import { useLanguage } from '@/provider/language-provider'
 
 function Collection() {
     const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
     const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
+    const {language} = useLanguage()
 
-    const { data: response, isLoading } = useGetCollectionQuery()
+    const { data: response, isLoading } = useGetCollectionQuery(language)
     const listCollection = response?.data.data as ImageType[] || []
 
     const images: ImageType[] = listCollection.map((item: any) => ({

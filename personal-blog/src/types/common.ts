@@ -84,6 +84,11 @@ export interface Translations {
     };
     activities: {
         header: string;
+        activity_1: string;
+        activity_2: string;
+        activity_3: string;
+        activity_4: string;
+        activity_5: string;
     };
     bio: {
         title: string;
