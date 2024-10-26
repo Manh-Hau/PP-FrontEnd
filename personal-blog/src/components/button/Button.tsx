@@ -1,7 +1,6 @@
-// Button.tsx
 import React, { ButtonHTMLAttributes } from "react";
-import Loader from "../loader/Loader";
-import "./app.module.css";
+import { Loader } from "../loader";
+import styles from "./app.module.css";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
@@ -12,7 +11,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({
-    className = "",
+    className,
     isLoading,
     onClick,
     type = "button",
@@ -20,9 +19,9 @@ const Button = ({
     disable
 }: Props) => {
     const buttonClasses = [
-        "button",
-        disable ? "button--disabled" : "",
-        isLoading ? "button--loading" : "",
+        styles.button,
+        isLoading && styles.loading,
+        disable && styles.disabled,
         className
     ].filter(Boolean).join(" ");
 

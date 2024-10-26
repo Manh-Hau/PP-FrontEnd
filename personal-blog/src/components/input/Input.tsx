@@ -1,6 +1,5 @@
-// Input.tsx
 import React from "react";
-import "./app.module.css";
+import styles from "./app.module.css";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
@@ -17,15 +16,15 @@ const Input: React.FC<InputProps> = ({
     placeholder,
     register,
     error,
-    className = "",
+    className,
     ...props
 }) => {
     return (
-        <div className={`input-wrapper ${className}`}>
+        <div className={`${styles.container} ${className || ''}`}>
             {label && (
                 <label
                     htmlFor={name}
-                    className="input__label"
+                    className={styles.label}
                 >
                     {label}
                 </label>
@@ -33,12 +32,12 @@ const Input: React.FC<InputProps> = ({
             <input
                 id={name}
                 type={type}
-                className="input__field"
+                className={styles.input}
                 placeholder={placeholder}
                 {...register?.(name)}
                 {...props}
             />
-            {error && <p className="input__error">{error}</p>}
+            {error && <p className={styles.error}>{error}</p>}
         </div>
     );
 };

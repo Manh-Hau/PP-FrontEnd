@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 import styles from './app.module.css'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useLanguage } from '@/provider/language-provider';
 
 export interface Image {
     id: number;
@@ -27,6 +28,7 @@ interface ImageModalProps {
 
 const ImageModal: React.FC<ImageModalProps> = ({ image, onClose, onPrevious, onNext }) => {
     const router = useRouter()
+    const { translations } = useLanguage()
 
     const handleNavigation = (path: string) => {
         router.push(path)
@@ -48,12 +50,13 @@ const ImageModal: React.FC<ImageModalProps> = ({ image, onClose, onPrevious, onN
 
                 <div className={styles.lightbox_details}>
                     <h2>{image.title}</h2>
-                    <p><strong>Chất liệu:</strong> {image.material}</p>
-                    <p><strong>Kích thước:</strong> {image.size}</p>
-                    <p><strong>Giá:</strong> {image.price}</p>
+                    <p><strong>{translations.image_modal.material}:</strong> {image.material}</p>
+                    <p><strong>{translations.image_modal.date}:</strong> {image.timestamp}</p>
+                    <p><strong>{translations.image_modal.size}:</strong> {image.size}</p>
+                    <p><strong>{translations.image_modal.price}:</strong> {image.price}</p>
                     <p>{image.description}</p>
                     <button className={styles.contact_button} onClick={() => handleNavigation('/contact')}>
-                        Liên hệ mua tranh
+                        {translations.image_modal.contact}
                     </button>
                 </div>
             </div>

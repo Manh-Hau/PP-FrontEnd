@@ -3,8 +3,10 @@ import React from 'react'
 import styles from './app.module.css'
 import slider from '../../assets/image/work_4.jpg'
 import Image from 'next/image'
+import { useLanguage } from '@/provider/language-provider'
 
 function Backdrop() {
+    const { translations } = useLanguage()
     return (
         <div className={styles.backdrop_container}>
             <Image width={1000}
@@ -14,7 +16,7 @@ function Backdrop() {
                 alt="slider_image"
                 priority />
             <div className={styles.backdrop_item}>
-                <h2>Artist</h2>
+                <h2>{translations.backdrop.artist}</h2>
                 <h1 className={styles.backdrop_name}>
                     <div>
                         <span className={styles.letter}>P</span>

@@ -4,8 +4,11 @@ import { useSendMailMutation } from '@/hooks/useSendMail';
 import React from 'react';
 import { useState } from 'react';
 import styles from './page.module.css';
+import toast from 'react-hot-toast'
+import { useLanguage } from '@/provider/language-provider';
 
 function Contact() {
+    const { translations } = useLanguage()
     const { mutate: sendMail, isPending } = useSendMailMutation()
     const [formData, setFormData] = useState({
         firstName: '',
@@ -27,7 +30,7 @@ function Contact() {
         const formattedContent = `Ten: ${formData.firstName}\nHo: ${formData.lastName}\nEmail: ${formData.email}\nNoi dung: ${formData.message}`;
         sendMail({ content: formattedContent }, {
             onSuccess: () => {
-                alert('Send Email Successfully!')
+                toast.success(translations.contact.success_send_mail)
                 setFormData({
                     firstName: '',
                     lastName: '',
@@ -36,7 +39,7 @@ function Contact() {
                 })
             },
             onError: (error: any) => {
-                console.log('error', error)
+                toast.error(error)
             }
         })
     }
@@ -45,16 +48,16 @@ function Contact() {
         <div className={styles.contact_container}>
             <div className={styles.contact_body}>
                 <div className={styles.container_left}>
-                    <h2 className={styles.contact_header}>LIÊN HỆ</h2>
+                    <h2 className={styles.contact_header}>{translations.contact.header}</h2>
                     <h3 className={styles.contact_info_1}>Email: phanphuyenartist@gmail.com</h3>
-                    <h3 className={styles.contact_info_2}>Số điện thoại: (+84) 968 191 889</h3>
+                    <h3 className={styles.contact_info_2}>{translations.contact.phone_number}: (+84) 968 191 889</h3>
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <div className={styles.fieldGroup}>
                             <div className={styles.nameFields}>
                                 <input
                                     type="text"
                                     name="firstName"
-                                    placeholder="Tên"
+                                    placeholder={translations.contact.first_name}
                                     className={styles.input}
                                     value={formData.firstName}
                                     onChange={handleChange}
@@ -63,7 +66,7 @@ function Contact() {
                                 <input
                                     type="text"
                                     name="lastName"
-                                    placeholder="Họ"
+                                    placeholder={translations.contact.last_name}
                                     className={styles.input}
                                     value={formData.lastName}
                                     onChange={handleChange}
@@ -85,14 +88,14 @@ function Contact() {
                         <div className={styles.fieldGroup}>
                             <textarea
                                 name="message"
-                                placeholder="Tin nhắn"
+                                placeholder={translations.contact.message}
                                 className={styles.textarea}
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
                             />
                         </div>
-                        <button type="submit" className={styles.submitButton}>GỬI</button>
+                        <button type="submit" className={styles.submitButton}>{translations.contact.send}</button>
                     </form>
                 </div>
             </div>

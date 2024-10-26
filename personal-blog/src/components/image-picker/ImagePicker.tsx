@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowUpToLine, XCircle } from "lucide-react";
-import styles from "./ImagePicker.module.css";
+import styles from "./page.module.css";
+import { useLanguage } from "@/provider/language-provider";
 
 type Props = {
     defaultImage?: string;
@@ -13,6 +14,7 @@ const ImagePicker = ({
     handleTakeFileImg,
     onImageChange,
 }: Props) => {
+    const { translations } = useLanguage()
     const pickerRef = useRef<HTMLInputElement>(null);
     const [selectedImage, setSelectedImage] = useState<string | null>(
         defaultImage || ""
@@ -49,14 +51,14 @@ const ImagePicker = ({
     return (
         <div className={styles.container}>
             <label htmlFor="image-input" className={styles.label}>
-                Select an image:
+                {translations.image_picker.choose_image}:
             </label>
             <button
                 type="button"
                 className={styles.button}
                 onClick={_handlePickImage}
             >
-                <ArrowUpToLine className={styles.icon} /> Upload image
+                <ArrowUpToLine className={styles.icon} /> {translations.image_picker.upload_image}
             </button>
             <input
                 ref={pickerRef}
@@ -79,9 +81,6 @@ const ImagePicker = ({
                     />
                 </div>
             )}
-            <div className={styles.helperText}>
-                * The name will not be displayed if there is an image
-            </div>
         </div>
     );
 };

@@ -6,21 +6,15 @@ const collectionApi = {
   createCollectionItem: (
     data: FormData
   ): Promise<TBaseResponse<any>> =>
-    postRequest("/item", data, true),
+    postRequest("/uploadImage", data, true),
   getCollection: (): Promise<TBaseResponse<any[]>> =>
     axiosClient.get("/getAllImages?lang=vn"),
   getCollectionByAdmin: (): Promise<TBaseResponse<any[]>> =>
     axiosClient.get("/getAllImagesAdmin?lang=vn"),
-  updateCollectionItem: (id: string): Promise<TBaseResponse<any>> =>
-    axiosClient.get(`/item/${id}`),
-  updateWheelItem: (data: FormData): Promise<TBaseResponse<any>> =>
-    axiosClient.put(`/item`, data),
-  reorderWheelItem: (
-    data: { id: number; order: number }[]
-  ): Promise<TBaseResponse<any>> => axiosClient.post(`/item/reorder`, data),
-  deleteImage: (id: string): Promise<TBaseResponse<any>> =>
-    axiosClient.delete(`/item/${id}`),
-
+  updateCollectionItem: (data: FormData): Promise<TBaseResponse<any>> =>
+    postRequest(`/updateImage`, data, true),
+  deleteCollectionItem: (id: string): Promise<TBaseResponse<any>> =>
+    axiosClient.delete(`/deleteImage?id=${id}`),
 };
 
 export default collectionApi;

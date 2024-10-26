@@ -8,9 +8,10 @@ import work_3 from '../../../assets/image/activity-3/ac-3.3.jpg'
 import work_4 from '../../../assets/image/activity-4/ac-4.3.jpg'
 import work_5 from '../../../assets/image/work_2.jpg'
 import { WorkBox } from '@/components/work-box'
+import { useLanguage } from '@/provider/language-provider'
 
 function Activities() {
-
+    const { translations } = useLanguage()
     const activities = [
         { imageSrc: work_5.src, title: "Triển lãm cá nhân Hoa Vàng Trên Cỏ Xanh", period: "2024", detail: 1 },
         { imageSrc: work_1.src, title: "Đấu tranh giá gây quỹ từ thiện chương trình Hoa Hậu Nam Vương Á Âu", period: "2019", detail: 2 },
@@ -22,7 +23,7 @@ function Activities() {
 
     return (
         <div className={styles.activities_container}>
-            <div className={styles.activities_header}>HOẠT ĐỘNG</div>
+            <div className={styles.activities_header}>{translations.activities.header}</div>
             <div className={styles.break}></div>
             <div className={styles.work_group}>
                 {activities.map((activity, index) => (

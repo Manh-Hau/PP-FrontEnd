@@ -9,6 +9,7 @@ import { useGetCollectionQuery } from '@/hooks/useGetCollection'
 import { Image } from '../image-modal/ImageModal'
 import { useMemo } from 'react'
 import { ImageModal } from '../image-modal'
+import { useLanguage } from '@/provider/language-provider'
 
 function Header() {
     const router = useRouter()
@@ -16,6 +17,7 @@ function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
     const [search, setSearch] = useState<string>('')
     const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+    const { translations } = useLanguage();
 
     const { data: response, isLoading } = useGetCollectionQuery()
     const listCollection = response?.data.data as Image[] || []
@@ -86,11 +88,11 @@ function Header() {
             <header className={styles.header_container}>
                 <img src={logo.src} alt="Logo" className={styles.logo_image} onClick={() => handleNavigation('/')} />
                 <ul className={`${styles.header_items} ${isMenuOpen ? styles.open : ''}`}>
-                    <li onClick={() => handleNavigation('/')}>TRANG CHỦ</li>
-                    <li onClick={() => handleNavigation('/bio')}>TIỂU SỬ</li>
-                    <li onClick={() => handleNavigation('/activities')}>HOẠT ĐỘNG</li>
-                    <li onClick={() => handleNavigation('/media')}>TRUYỀN THÔNG</li>
-                    <li onClick={() => handleNavigation('/contact')}>LIÊN HỆ</li>
+                    <li onClick={() => handleNavigation('/')}>{translations.header.home}</li>
+                    <li onClick={() => handleNavigation('/bio')}>{translations.header.bio}</li>
+                    <li onClick={() => handleNavigation('/activities')}>{translations.header.activities}</li>
+                    <li onClick={() => handleNavigation('/media')}>{translations.header.media}</li>
+                    <li onClick={() => handleNavigation('/contact')}>{translations.header.contact}</li>
                 </ul>
                 <div className={styles.header_right}>
                     <button onClick={toggleSearch}>
@@ -128,19 +130,19 @@ function Header() {
                                                 <div className={styles.item_details}>
                                                     <h3 className={styles.item_title}>{item.title}</h3>
                                                     <p className={styles.item_info}>
-                                                        <span className={styles.label}>Material:</span>
+                                                        <span className={styles.label}>{translations.header.material}:</span>
                                                         {item.material}
                                                     </p>
                                                     <p className={styles.item_info}>
-                                                        <span className={styles.label}>Size:</span>
+                                                        <span className={styles.label}>{translations.header.size}:</span>
                                                         {item.size}
                                                     </p>
                                                     <p className={styles.item_info}>
-                                                        <span className={styles.label}>Price:</span>
+                                                        <span className={styles.label}>{translations.header.price}:</span>
                                                         {item.price}
                                                     </p>
                                                     <p className={styles.item_info}>
-                                                        <span className={styles.label}>Date:</span>
+                                                        <span className={styles.label}>{translations.header.date}:</span>
                                                         {item.timestamp}
                                                     </p>
                                                 </div>

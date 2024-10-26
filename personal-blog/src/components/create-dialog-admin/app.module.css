@@ -1,0 +1,18 @@
+.actionButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formBody {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}

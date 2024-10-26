@@ -1,0 +1,55 @@
+/* LanguageSwitcher.module.css */
+.switcherButton {
+    position: fixed;
+    bottom: 2%;
+    right: 3%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px;
+    background-color: #f8f8f877;
+    border: 1px solid #e2e2e2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.switcherButton:hover {
+    background-color: #FCCA0B;
+    transform: translateY(-1px);
+    border: 1px solid #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.switcherButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.flag {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.langText {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .switcherButton {
+        background-color: #1f2937;
+        border-color: #374151;
+    }
+
+    .switcherButton:hover {
+        background-color: #273548;
+    }
+
+    .langText {
+        color: #e5e7eb;
+    }
+}

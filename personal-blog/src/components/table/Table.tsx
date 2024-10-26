@@ -1,7 +1,10 @@
+"use client"
+
 import React, { useState, useMemo } from 'react';
 import styles from './page.module.css';
 import { ChevronLastIcon, ChevronFirstIcon, Pencil, Trash2 } from 'lucide-react';
 import { Loader } from '../loader';
+import { useLanguage } from '@/provider/language-provider';
 
 interface Image {
     id: number;
@@ -21,12 +24,13 @@ interface TableProps {
     className?: string;
     itemsPerPage?: number;
     filterColumn?: string;
-    onEdit?: (index: number) => void;
-    onDelete?: (index: number) => void;
-    loading?: boolean
+    onEdit?: (image: Image) => void;
+    onDelete?: (image: Image) => void;
+    loading?: boolean,
+    children?: React.ReactNode
 }
 
-const Table: React.FC<TableProps> = ({
+const GridTable: React.FC<TableProps> = ({
     headers,
     data,
     className,
@@ -34,10 +38,12 @@ const Table: React.FC<TableProps> = ({
     filterColumn,
     onEdit,
     onDelete,
-    loading
+    loading,
+    children
 }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState('');
+    const { translations } = useLanguage()
 
     const removeAccents = (str: string): string => {
         return str.normalize('NFD')
@@ -48,7 +54,7 @@ const Table: React.FC<TableProps> = ({
 
     const filteredData = useMemo(() => {
         if (!filter || !filterColumn) return data;
-        
+
         const normalizedFilter = filter.toLowerCase();
         const noAccentFilter = removeAccents(normalizedFilter);
 
@@ -57,8 +63,8 @@ const Table: React.FC<TableProps> = ({
             const normalizedValue = value.toLowerCase();
             const noAccentValue = removeAccents(normalizedValue);
 
-            return normalizedValue.includes(normalizedFilter) || 
-                   noAccentValue.includes(noAccentFilter);
+            return normalizedValue.includes(normalizedFilter) ||
+                noAccentValue.includes(noAccentFilter);
         });
     }, [data, filter, filterColumn]);
 
@@ -70,25 +76,28 @@ const Table: React.FC<TableProps> = ({
 
     const handleEdit = (image: Image) => {
         if (onEdit) {
-            // onEdit(image);
+            onEdit(image);
         }
     };
 
     const handleDelete = (image: Image) => {
         if (onDelete) {
-            // onDelete(image);
+            onDelete(image);
         }
     };
 
-    const formatJSON = (input: string) => input.length ? JSON.parse(input) : ''
+
+
+    const formatJSON = (input: string) => input.length > 0 ? JSON.parse(input) : ''
 
     return (
         <div className={styles.tableContainer}>
             {filterColumn && (
                 <div className={styles.filterContainer}>
+                    {children}
                     <input
                         type="text"
-                        placeholder={`Tìm kiếm theo tên`}
+                        placeholder={translations.grid_table.find_by_name}
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                         className={styles.filterInput}
@@ -157,4 +166,4 @@ const Table: React.FC<TableProps> = ({
     );
 };
 
-export default Table;
+export default GridTable;
