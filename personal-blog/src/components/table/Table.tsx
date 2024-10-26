@@ -1,10 +1,12 @@
 "use client"
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import styles from './page.module.css';
 import { ChevronLastIcon, ChevronFirstIcon, Pencil, Trash2 } from 'lucide-react';
-import { Loader } from '../loader';
 import { useLanguage } from '@/provider/language-provider';
+import { useInView } from 'react-intersection-observer';
+import { ImageLoader } from '../image-loader';
+import { Loader } from '../loader';
 
 interface Image {
     id: number;
@@ -26,8 +28,8 @@ interface TableProps {
     filterColumn?: string;
     onEdit?: (image: Image) => void;
     onDelete?: (image: Image) => void;
-    loading?: boolean,
-    children?: React.ReactNode
+    loading?: boolean;
+    children?: React.ReactNode;
 }
 
 const GridTable: React.FC<TableProps> = ({
@@ -41,66 +43,84 @@ const GridTable: React.FC<TableProps> = ({
     loading,
     children
 }) => {
-    // Add client-side only state
     const [isClient, setIsClient] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [filter, setFilter] = useState('');
+    const [debouncedFilter, setDebouncedFilter] = useState('');
     const { translations } = useLanguage();
+    const { ref, inView } = useInView({
+        threshold: 0,
+        triggerOnce: false
+    });
 
-    // Use useEffect to mark component as client-side rendered
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
-
-    const removeAccents = (str: string): string => {
+    const removeAccents = useCallback((str: string): string => {
         return str.normalize('NFD')
             .replace(/[\u0300-\u036f]/g, '')
             .replace(/đ/g, 'd')
             .replace(/Đ/g, 'D');
-    };
+    }, []);
+
+
+    const normalizedData = useMemo(() => {
+        return data.map(item => ({
+            ...item,
+            searchField: removeAccents(item[filterColumn as keyof Image]?.toString().toLowerCase() || '')
+        }));
+    }, [data, filterColumn]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedFilter(removeAccents(filter.toLowerCase()));
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [filter]);
 
     const filteredData = useMemo(() => {
-        if (!filter || !filterColumn) return data;
+        if (!debouncedFilter || !filterColumn) return normalizedData;
+        return normalizedData.filter(item =>
+            item.searchField.includes(debouncedFilter)
+        );
+    }, [normalizedData, debouncedFilter, filterColumn]);
 
-        const normalizedFilter = filter.toLowerCase();
-        const noAccentFilter = removeAccents(normalizedFilter);
-        return data.filter(item => {
-            const value = item[filterColumn as keyof Image]?.toString() || '';
-            const normalizedValue = value.toLowerCase();
-            const noAccentValue = removeAccents(normalizedValue);
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [debouncedFilter]);
 
-            return normalizedValue.includes(normalizedFilter) ||
-                noAccentValue.includes(noAccentFilter);
-        });
-    }, [data, filter, filterColumn]);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const pageCount = Math.ceil(filteredData.length / itemsPerPage);
-    const paginatedData = filteredData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
+    const paginatedData = useMemo(() => {
+        return filteredData.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+        );
+    }, [filteredData, currentPage, itemsPerPage]);
 
-    const handleEdit = (image: Image) => {
-        if (onEdit) {
-            onEdit(image);
-        }
-    };
+    const handleEdit = useCallback((image: Image) => {
+        onEdit?.(image);
+    }, [onEdit]);
 
-    const handleDelete = (image: Image) => {
-        if (onDelete) {
-            onDelete(image);
-        }
-    };
+    const handleDelete = useCallback((image: Image) => {
+        onDelete?.(image);
+    }, [onDelete]);
 
-    const formatJSON = (input: string) => {
+    const formatJSON = useCallback((input: string) => {
         try {
             return input.length > 0 ? JSON.parse(input) : '';
         } catch {
             return '';
         }
-    };
+    }, []);
 
-    // Return loading skeleton or null during server-side rendering
+    const visibleData = useMemo(() => {
+        return filteredData.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+        );
+    }, [filteredData, currentPage, itemsPerPage]);
+
     if (!isClient) {
         return <div className={styles.tableContainer}>Loading...</div>;
     }
@@ -123,53 +143,59 @@ const GridTable: React.FC<TableProps> = ({
                 <Loader className={styles.loader} />
             ) : (
                 <>
-                    <table className={`${styles.table} ${className || ''}`}>
-                        <thead>
-                            <tr>
-                                {headers.map((header, index) => (
-                                    <th key={index} className={styles.th}>{header}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {paginatedData.map((item) => (
-                                <tr key={item.id}>
-                                    <td className={`${styles.td} ${styles.imageCell}`}>
-                                        <img
-                                            src={item.src}
-                                            alt={item.alt}
-                                            className={styles.thumbnailImage}
-                                        />
-                                    </td>
-                                    <td className={styles.td}>{item.title}</td>
-                                    <td className={styles.td}>
-                                        {`${formatJSON(item.material).vn}-${formatJSON(item.material).en}`}
-                                    </td>
-                                    <td className={styles.td}>{item.size}</td>
-                                    <td className={styles.td}>
-                                        {`${formatJSON(item.price).vn}-${formatJSON(item.price).en}`}
-                                    </td>
-                                    <td className={styles.td}>{item.timestamp}</td>
-                                    <td className={`${styles.td} ${styles.actionColumn}`}>
-                                        <button
-                                            onClick={() => handleEdit(item)}
-                                            className={styles.actionButton}
-                                            title="Chỉnh sửa"
-                                        >
-                                            <Pencil size={16} className={styles.editIcon} />
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(item)}
-                                            className={styles.actionButton}
-                                            title="Xóa"
-                                        >
-                                            <Trash2 size={16} className={styles.deleteIcon} />
-                                        </button>
-                                    </td>
+                    <div className={styles.tableWrapper} ref={ref}>
+                        <table className={`${styles.table} ${className || ''}`}>
+                            <thead>
+                                <tr>
+                                    {headers.map((header, index) => (
+                                        <th key={index} className={styles.th}>{header}</th>
+                                    ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {visibleData.map((item) => (
+                                    <tr key={item.id}>
+                                        <td className={`${styles.td} ${styles.imageCell}`}>
+                                            {inView && (
+                                                <ImageLoader
+                                                    src={item.src}
+                                                    alt=''
+                                                    className={styles.thumbnailImage}
+                                                    placeholder='Load image'
+                                                />
+                                            )}
+                                        </td>
+                                        <td className={styles.td}>{item.title}</td>
+                                        <td className={styles.td}>
+                                            {`${formatJSON(item.material).vn}-${formatJSON(item.material).en}`}
+                                        </td>
+                                        <td className={styles.td}>{item.size}</td>
+                                        <td className={styles.td}>
+                                            {`${formatJSON(item.price).vn}-${formatJSON(item.price).en}`}
+                                        </td>
+                                        <td className={styles.td}>{item.timestamp}</td>
+                                        <td className={`${styles.td} ${styles.actionColumn}`}>
+                                            <button
+                                                onClick={() => handleEdit(item)}
+                                                className={styles.actionButton}
+                                                title="Chỉnh sửa"
+                                            >
+                                                <Pencil size={16} className={styles.editIcon} />
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(item)}
+                                                className={styles.actionButton}
+                                                title="Xóa"
+                                            >
+                                                <Trash2 size={16} className={styles.deleteIcon} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
                     <div className={styles.pagination}>
                         <button
                             onClick={() => setCurrentPage(page => Math.max(page - 1, 1))}

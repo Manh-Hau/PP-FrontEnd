@@ -110,3 +110,23 @@ tr:hover .td {
     border: 1px solid #e2e8f0;
     border-radius: 0.25rem;
 }
+
+.tableWrapper {
+    overflow-x: auto;
+    min-height: 400px;
+    /* Adjust based on your needs */
+}
+
+.imageCell {
+    width: 100px;
+    /* Fixed width for image cells */
+    height: 100px;
+    /* Fixed height for image cells */
+}
+
+.thumbnailImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
