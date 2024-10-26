@@ -1,4 +1,5 @@
 "use client"
+import { useLanguage } from '@/provider/language-provider';
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './page.module.css';
 
@@ -9,33 +10,32 @@ interface ContentItem {
   position: { top: string; left: string };
 }
 
-
-
-const contentItems: ContentItem[] = [
-  {
-    id: 1,
-    title: "TIỂU SỬ",
-    content: "Họa sĩ Phan Phú Yên\n Sinh năm 1996 tại tỉnh Phú Yên",
-    position: { top: "20%", left: "30%" }
-  },
-  {
-    id: 2,
-    title: "",
-    content: "2002 – 2014: Học tiểu học, Trung học, Trung học phổ thông tại Thị trấn La Hai, Huyện Đồng Xuân, Tỉnh Phú Yên\n 2014 – 2019: Học tại trường Đại học Kiến Trúc Thành phố Hồ Chí Minh",
-    position: { top: "40%", left: "30%" }
-  },
-  {
-    id: 3,
-    title: "",
-    content: "2019 - đến nay: Sống và làm việc tại Thành phố Hồ Chí Minh\n 09/11 – 15/11/2024: Triển lãm cá nhân – Hoa Vàng Trên Cỏ Xanh tại Hawaii Art Place, Thành phố Hồ Chí Minh.",
-    position: { top: "60%", left: "30%" }
-  }
-];
-
 function Bio() {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const lastScrollPosition = useRef(0);
+  const { translations } = useLanguage()
+
+  const contentItems: ContentItem[] = [
+    {
+      id: 1,
+      title: translations.bio.title,
+      content: translations.bio.content_1,
+      position: { top: "20%", left: "30%" }
+    },
+    {
+      id: 2,
+      title: "",
+      content: translations.bio.content_2,
+      position: { top: "40%", left: "30%" }
+    },
+    {
+      id: 3,
+      title: "",
+      content: translations.bio.content_3,
+      position: { top: "60%", left: "30%" }
+    }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {

@@ -1,17 +1,21 @@
+"use client"
+
 import React from 'react'
 import styles from './app.module.css'
 import { Mail, Facebook, PhoneCall } from 'lucide-react'
+import { useLanguage } from '@/provider/language-provider'
 
 function Footer() {
+    const { translations } = useLanguage()
     const phoneNumber = "0968191889"
     const facebookUrl = "https://www.facebook.com/thao.phan.92317121"
     const email = "phanphuyenartist@gmail.com"
 
     return (
         <div className={styles.footer_container}>
-            <h2>Artist</h2>
+            <h2>{translations.footer.artist}</h2>
             <h1>PHAN PHU YEN</h1>
-            <p className={styles.privacy_note}>Trân trọng</p>
+            <p className={styles.privacy_note}>{translations.footer.regard}</p>
             <div className={styles.social_icons}>
                 <a
                     href={`mailto:${email}`}

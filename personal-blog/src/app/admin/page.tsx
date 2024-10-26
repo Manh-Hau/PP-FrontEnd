@@ -3,26 +3,29 @@
 import React, { useState } from 'react';
 import { LogOutIcon } from 'lucide-react'
 import styles from './page.module.css';
-import { Table } from '@/components/table';
-import { Dialog } from '@/components/dialog';
-import Button from '@/components/button/Button';
-import { Input } from '@/components/input';
-import { ImagePicker } from '@/components/image-picker';
-import { useGetCollectionQuery } from '@/hooks/useGetCollection';
+import { GridTable } from '@/components/table';
 import { useGetCollectionByAdminQuery } from '@/hooks/useGetCollectionByAdmin';
 import { Image } from '@/components/image-modal/ImageModal';
 import { useRouter } from 'next/navigation';
+import { EditDialogAdmin } from '@/components/edit-dialog-admin';
+import Button from '@/components/button/Button';
+import { Dialog } from '@/components/dialog';
+import { CreateDialogAdmin } from '@/components/create-dialog-admin';
+import { useDeleteCollectionItemMutation } from '@/hooks/useDeleteCollectionItem';
+import toast from 'react-hot-toast'
+import { useLanguage } from '@/provider/language-provider';
 
 const AdminPage: React.FC = () => {
     const router = useRouter()
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [images, setImages] = useState<Image[]>([]);
-    const [newImage, setNewImage] = useState<Partial<Image>>({});
-    const [isEdit, setIsEdit] = useState<boolean>(false)
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    const [imgFile, setImgFile] = useState<File>();
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState<boolean>(false);
+    const [isCreateDialogOpen, setIsCreateDialogOpen] = useState<boolean>(false);
+    const [isDeleteImage, setIsDeleteImage] = useState<boolean>(false);
+    const [selectedImage, setSelectedImage] = useState<Image>()
+    const { translations } = useLanguage()
 
     const { data: response, isLoading } = useGetCollectionByAdminQuery()
+    const { mutate: deleteImage, isPending } = useDeleteCollectionItemMutation()
+
     const listCollection = response?.data.data as Image[] || []
 
     const dataTable: Image[] = listCollection.map((item: any) => ({
@@ -37,38 +40,42 @@ const AdminPage: React.FC = () => {
         timestamp: item.timestamp
     }));
 
-    console.log('listCollection', listCollection)
-    const handleAddImage = () => {
-        if (newImage.title && newImage.src) {
-            setImages([...images, { ...newImage, id: Date.now() } as Image]);
-            setNewImage({});
-            setIsDialogOpen(false);
-        }
-    };
-
     const handleLogout = () => {
         router.push('/')
     }
 
-    const headers = ['Hình ảnh', 'Tên', 'Chất liệu', 'Kích thước', 'Giá', 'Năm', 'Thao tác'];
+    const headers = [translations.admin.headers.image, translations.admin.headers.name, translations.admin.headers.material, translations.admin.headers.size, translations.admin.headers.price, translations.admin.headers.date, translations.admin.headers.action];
 
-    const handleEdit = (index: number) => {
-        console.log('Edit row:', index);
-        // Xử lý logic edit tại đây
+    const handleEdit = (item: Image) => {
+        setSelectedImage(item)
+        setIsEditDialogOpen(true)
     };
 
-    const handleDelete = (index: number) => {
-        console.log('Delete row:', index);
-        // Xử lý logic delete tại đây
+    const handleDelete = (image: Image) => {
+        setIsDeleteImage(true)
+        setSelectedImage(image)
     };
 
-    const handleImageChange = (imageUrl: string | null) => {
-        setSelectedImage(imageUrl);
-    };
+    const handleCreateNewImage = () => {
+        setIsCreateDialogOpen(true)
+    }
 
-    const handleTakeFileImg = (file: File) => {
-        setImgFile(file);
-    };
+    const onCancelDelete = () => {
+        setIsDeleteImage(false)
+    }
+
+    const onConfirmDeletImage = () => {
+        deleteImage(selectedImage?.id.toString() || '', {
+            onSuccess: () => {
+                toast.success(translations.admin.headers.action)
+                setIsDeleteImage(false)
+            },
+            onError: (error: any) => {
+                toast.error(error)
+            }
+
+        })
+    }
 
     return (
         <div className={styles.adminPage}>
@@ -80,7 +87,7 @@ const AdminPage: React.FC = () => {
                 </div>
             </header>
             <div className={styles.body}>
-                <Table
+                <GridTable
                     headers={headers}
                     data={dataTable}
                     itemsPerPage={5}
@@ -88,57 +95,30 @@ const AdminPage: React.FC = () => {
                     onEdit={handleEdit}
                     onDelete={handleDelete}
                     loading={isLoading}
-                />
+                >
+                    <Button name={translations.admin.headers.button_create_new} className={styles.createButton} onClick={handleCreateNewImage} />
+                </GridTable>
             </div>
-            {/* <Dialog
-                open={isEdit}
-                title="Update Items"
-                setOpen={setIsEdit}
+            <CreateDialogAdmin isOpen={isCreateDialogOpen} setIsOpen={setIsCreateDialogOpen} />
+            <EditDialogAdmin isOpen={isEditDialogOpen} setIsOpen={setIsEditDialogOpen} data={selectedImage} />
+            <Dialog
+                open={isDeleteImage}
+                title={translations.admin.headers.create_new_image(selectedImage?.title || '')}
+                setOpen={setIsDeleteImage}
                 actionButton={
-                    <div className="flex items-center gap-2 pt-4">
-                        <Button name="Cancel" onClick={onClickCancelCustomItems}></Button>
+                    <div style={{ display: "flex", gap: 8 }}>
                         <Button
-                            name="Update"
-                            onClick={handleSubmit(onSubmit)}
+                            name={translations.common.cancel}
+                            onClick={onCancelDelete}
+                        ></Button>
+                        <Button
+                            name={translations.common.delete}
+                            onClick={onConfirmDeletImage}
                             isLoading={isPending}
                         ></Button>
                     </div>
                 }
-            >
-                <div className="grid gap-3">
-                    <form>
-                        <Input
-                            label="Name"
-                            name="name"
-                            type="text"
-                            placeholder="Please input name!"
-                            register={register}
-                            error={formState.errors.name?.message}
-                        />
-                        <div className="flex w-full gap-2">
-                            <Input
-                                label="Value"
-                                name="value"
-                                type="text"
-                                placeholder="Please input value!"
-                                register={register}
-                                error={formState.errors.value?.message}
-                            />
-                            <Input
-                                label="Weight"
-                                name="weight"
-                                type="number"
-                                register={register}
-                            />
-                        </div>
-                        <ImagePicker
-                            onImageChange={handleImageChange}
-                            defaultImage={selectedImage?.img}
-                            handleTakeFileImg={handleTakeFileImg}
-                        />
-                    </form>
-                </div>
-            </Dialog> */}
+            />
         </div>
     );
 };

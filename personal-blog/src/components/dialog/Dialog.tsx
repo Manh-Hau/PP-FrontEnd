@@ -6,7 +6,7 @@ import {
     DialogPanel,
     DialogTitle,
 } from "@headlessui/react";
-import styles from './app.module.css';
+import styles from "./app.module.css";
 
 export default function Popup({
     title,
@@ -17,12 +17,12 @@ export default function Popup({
 }: {
     title?: string;
     open: boolean;
-    children: React.ReactNode;
-    setOpen: (open: boolean) => void;
+    children?: React.ReactNode;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
     actionButton?: React.ReactNode;
 }) {
     return (
-        <Dialog open={open} onClose={setOpen} className="relative z-[100]">
+        <Dialog open={open} onClose={setOpen} className={styles.dialog}>
             <DialogBackdrop
                 transition
                 className={styles.backdrop}
@@ -35,8 +35,8 @@ export default function Popup({
                         className={styles.panel}
                     >
                         <div className={styles.content}>
-                            <div className={styles.inner}>
-                                <div className="flex-1">
+                            <div className={styles.header}>
+                                <div className={styles.titleWrapper}>
                                     <DialogTitle
                                         as="h3"
                                         className={styles.title}
@@ -46,7 +46,7 @@ export default function Popup({
                                     {children}
                                 </div>
                             </div>
-                            <div className={styles.actionWrapper}>{actionButton}</div>
+                            <div className={styles.actions}>{actionButton}</div>
                         </div>
                     </DialogPanel>
                 </div>
