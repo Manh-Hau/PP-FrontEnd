@@ -67,7 +67,7 @@ const AdminPage: React.FC = () => {
     const onConfirmDeletImage = () => {
         deleteImage(selectedImage?.id.toString() || '', {
             onSuccess: () => {
-                toast.success(translations.admin.headers.action)
+                toast.success(translations.admin.headers.confirm_delete)
                 setIsDeleteImage(false)
             },
             onError: (error: any) => {

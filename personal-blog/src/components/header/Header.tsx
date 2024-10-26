@@ -17,9 +17,9 @@ function Header() {
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
     const [search, setSearch] = useState<string>('')
     const [selectedImage, setSelectedImage] = useState<Image | null>(null);
-    const { translations } = useLanguage();
+    const { translations, language } = useLanguage();
 
-    const { data: response, isLoading } = useGetCollectionQuery()
+    const { data: response, isLoading } = useGetCollectionQuery(language)
     const listCollection = response?.data.data as Image[] || []
 
     const dataTable: Image[] = listCollection.map((item: any) => ({
@@ -109,7 +109,7 @@ function Header() {
                 {isSearchOpen && (
                     <div>
                         <div className={`${styles.search_overlay} ${isSearchOpen ? styles.show : ''}`}>
-                            <input type="text" placeholder="Search..." className={styles.search_input} onChange={(e) => setSearch(e.target.value)} value={search} />
+                            <input type="text" placeholder={translations.header.search} className={styles.search_input} onChange={(e) => setSearch(e.target.value)} value={search} />
                             <button onClick={toggleSearch} className={styles.close_search_button}>
                                 {isSearchOpen ? <X /> : <div />}
                             </button>

@@ -59,30 +59,31 @@ function EditDialogAdmin({ isOpen, setIsOpen, data }: Props) {
             resolver: zodResolver(UpdateCollectionItemSchema),
         });
 
-    const onSubmit = (data: UpdateCollectionItemsForm) => {
+    const onSubmit = (dataForm: UpdateCollectionItemsForm) => {
         let formData = new FormData();
 
-        const formatMaterial = { vn: data.material_vn, en: data.material_en }
-        const formatPrice = { vn: data.price_vn, en: data.price_en }
+        const formatMaterial = { vn: dataForm.material_vn, en: dataForm.material_en }
+        const formatPrice = { vn: dataForm.price_vn, en: dataForm.price_en }
 
-        formData.append("name", data.name);
+        formData.append("id", data?.id.toString() || '')
+        formData.append("name", dataForm.name);
         formData.append("material", JSON.stringify(formatMaterial));
-        formData.append("date", data.date);
+        formData.append("date", dataForm.date);
         formData.append("price", JSON.stringify(formatPrice));
-        formData.append("size", data.size);
+        formData.append("size", dataForm.size);
         if (imgFile) {
             formData.append("file", imgFile);
         }
         if (selectedImage !== null && !imgFile) {
-            formData.append("file", data.file || "");
+            formData.append("file", dataForm.file || "");
         }
         if (selectedImage === null && !imgFile) {
-            formData.append("file", "12");
+            formData.append("file", "");
         }
 
         updateCollectionItem(formData, {
             onSuccess: () => {
-                toast.success(translations.edit_dialog_admin.validate_name);
+                toast.success(translations.edit_dialog_admin.update_success);
                 setIsOpen(false)
                 reset()
             },
