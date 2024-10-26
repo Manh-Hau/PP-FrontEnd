@@ -14,6 +14,7 @@ import { CreateDialogAdmin } from '@/components/create-dialog-admin';
 import { useDeleteCollectionItemMutation } from '@/hooks/useDeleteCollectionItem';
 import toast from 'react-hot-toast'
 import { useLanguage } from '@/provider/language-provider';
+import Cookies from 'js-cookie';
 
 const AdminPage: React.FC = () => {
     const router = useRouter()
@@ -41,6 +42,7 @@ const AdminPage: React.FC = () => {
     }));
 
     const handleLogout = () => {
+        Cookies.remove('user', { path: '/' });
         router.push('/')
     }
 

@@ -12,7 +12,6 @@ function Collection() {
     const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
     const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
     const {language} = useLanguage()
-    console.log('language', language)
 
     const { data: response, isLoading } = useGetCollectionQuery(language)
     const listCollection = response?.data.data as ImageType[] || []
