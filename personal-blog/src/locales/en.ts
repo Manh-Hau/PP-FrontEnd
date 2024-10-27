@@ -74,7 +74,7 @@ export const en = {
         title: 'BIO',
         content_1: 'Artist Phan Phu Yen\n Born in 1996 in Phu Yen Province',
         content_2: '2002 – 2014: Attended primary school, middle school, and high school in La Hai Town, Dong Xuan District, Phu Yen Province\n 2014 – 2019: Studied at Ho Chi Minh City University of Architecture',
-        content_3: '2019 – Present: Living and working in Ho Chi Minh City\n November 9 – November 15, 2024: Solo exhibition – Yellow Flowers on the Green Grass at Hawaii Art Place, Ho Chi Minh City'
+        content_3: '2019 – Present: Living and working in Ho Chi Minh City\n November 9th – November 15th, 2024: Solo exhibition – Yellow Flowers on the Green Grass at Hawaii Art Place, Ho Chi Minh City'
     },
     contact: {
         success_send_mail: 'Send Email Successfully!',
